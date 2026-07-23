@@ -3,6 +3,7 @@ class ClockBody extends React.Component {
 
     state = {
         isDirty: false,
+        code: ""
     };
 
     _formatLower(value) {
@@ -11,6 +12,10 @@ class ClockBody extends React.Component {
 
     _formatUpper(value) {
         return String(value).toUpperCase();
+    }
+
+    _onClick(value) {
+        this.setState({code: this.state.code + value});
     }
 
     _renderClock() {
@@ -34,7 +39,7 @@ class ClockBody extends React.Component {
         };
 
         return (
-            <div>
+            <div class="clockdiv">
                  <section>
                     <span class="clockspan" style={style1}></span>
                     <span class="clockspan" style={style2}></span>
@@ -48,8 +53,11 @@ class ClockBody extends React.Component {
 
         return (
             <div>
+                <span>
+                    {this.state.code}
+                </span>
                 <div>
-                    <button>1</button>
+                    <button onClick={() => this._onClick("1")}>1</button>
                     <button>2</button>
                     <button>3</button>
                 </div>
@@ -64,7 +72,7 @@ class ClockBody extends React.Component {
                     <button>9</button>
                 </div>
                 <div>
-                    <button>◂</button>
+                    <button>◀</button>
                     <button>0</button>
                     <button>☒</button>
                 </div>
