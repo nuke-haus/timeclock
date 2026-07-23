@@ -63,6 +63,11 @@ class ClockBody extends React.Component {
                     <button>8</button>
                     <button>9</button>
                 </div>
+                <div>
+                    <button>◂</button>
+                    <button>0</button>
+                    <button>☒</button>
+                </div>
             </div>
         );
     }
@@ -73,8 +78,8 @@ class ClockBody extends React.Component {
                 <div className="tabletext">
                     TIMECLOCK
                 </div>
-                {this._renderClock()}
                 {this._renderKeypad()}
+                {this._renderClock()}
             </div>
         );
     }
