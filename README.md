@@ -1,4 +1,5 @@
-[![pages-build-deployment](https://github.com/nuke-haus/perfumenuke/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/nuke-haus/perfumenuke/actions/workflows/pages/pages-build-deployment)
+
+[![pages-build-deployment](https://github.com/nuke-haus/timeclock/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/nuke-haus/timeclock/actions/workflows/pages/pages-build-deployment)
 
 # Timeclock
 
