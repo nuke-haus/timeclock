@@ -39,7 +39,7 @@ class ClockBody extends React.Component {
         };
 
         return (
-            <div class="clockdiv">
+            <div className="clockdiv">
                  <section>
                     <span className="clockspan" style={style1}></span>
                     <span className="clockspan" style={style2}></span>
