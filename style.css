@@ -12,25 +12,25 @@ body {
 }
 
 a:link {
-    color: #000000;
+    color: #000088;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:visited {
-    color: #000000;
+    color: #440088;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:hover {
-    color: #000000;
+    color: #005555;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: #000000;
+    color: #000088;
     background-color: transparent;
     text-decoration: underline;
 }
@@ -211,7 +211,7 @@ section span:nth-child(1) {
 
 section span:nth-child(2) {
   left: 5%;
-  width: 45%;
+  width: 55%;
   height: 3px;
 }
 
