@@ -199,27 +199,27 @@ table, td, th {
 }
 
 section {
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
   transform: translateY(-3px);
 }
 
 section span:nth-child(1) {
   width: 50%;
-  height: 2px;
+  height: 3px;
   background: #e63946;
 }
 
 section span:nth-child(2) {
   left: 5%;
   width: 55%;
-  height: 3px;
+  height: 5px;
 }
 
 section span:nth-child(3) {
   left: 10%;
   width: 40%;
-  height: 4px;
+  height: 7px;
 }
 
 .clockspan {
@@ -232,6 +232,6 @@ section span:nth-child(3) {
 }
 
 .clockdiv {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
 }
