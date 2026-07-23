@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 
 class ClockBody extends React.Component {
 

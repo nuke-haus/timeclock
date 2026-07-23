@@ -18,7 +18,7 @@ class Page extends React.Component {
         } else {
             // Locally stored persistent data exists, so parse that and validate it instead
             const parsedData = JSON.parse(locallyStoredData);
-            TC.loadData(parsedData)
+            //TC.loadData(parsedData)
         }
     }
 
