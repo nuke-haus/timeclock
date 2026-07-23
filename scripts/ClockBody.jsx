@@ -34,11 +34,13 @@ class ClockBody extends React.Component {
         };
 
         return (
-            <section>
-                <span style={style1}></span>
-                <span style={style2}></span>
-                <span style={style3}></span>
-            </section>
+            <div>
+                 <section>
+                    <span class="clockspan" style={style1}></span>
+                    <span class="clockspan" style={style2}></span>
+                    <span class="clockspan" style={style3}></span>
+                </section>
+            </div>
         );
     }
 
