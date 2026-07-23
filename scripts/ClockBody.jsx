@@ -15,28 +15,30 @@ class ClockBody extends React.Component {
     }
 
     _renderClock() {
-        const secondsRef = useRef(null);
-        const minutesRef = useRef(null);
-        const hoursRef = useRef(null);
-        const now = new Date();
 
+        const now = new Date();
         const seconds = now.getSeconds();
         const secondsDegrees = (seconds / 60) * 360 + 90;
-        secondsRef.current.style.transform = `rotate(${secondsDegrees}deg)`;
-
         const minutes = now.getMinutes();
         const minutesDegrees = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
-        minutesRef.current.style.transform = `rotate(${minutesDegrees}deg)`;
-
         const hours = now.getHours();
         const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30 + 90;
-        hoursRef.current.style.transform = `rotate(${hoursDegrees}deg)`;
+
+        const style1 = {
+            transform: `rotate(${secondsDegrees}deg)`
+        };
+        const style2 = {
+            transform: `rotate(${minutesDegrees}deg)`
+        };
+        const style3 = {
+            transform: `rotate(${hoursDegrees}deg)`
+        };
 
         return (
             <section>
-                <span ref={secondsRef}></span>
-                <span ref={minutesRef}></span>
-                <span ref={hoursRef}></span>
+                <span style={style1}></span>
+                <span style={style2}></span>
+                <span style={style3}></span>
             </section>
         );
     }
