@@ -1,10 +1,10 @@
 class Page extends React.Component {
 
-    NAV_CLOCK = "TIMECLOCK";
-    NAV_DATABASE = "DATABASE";
+    NAV_CLOCK = "🕒";
+    NAV_DATABASE = "🗄";
 
     state = {
-        currentNav: "TIMECLOCK"
+        currentNav: "🕒"
     };
 
     constructor(props) {
@@ -43,10 +43,6 @@ class Page extends React.Component {
                     <div className="topbutton" onClick={() => this._onNavClick(this.NAV_DATABASE)}>
                         <span className={this._getClassName(this.NAV_DATABASE)}>{this.NAV_DATABASE}</span>
                     </div>
-                </div>
-                <div className="bar">
-                </div>
-                <div className="barshadow">
                 </div>
             </div>
         );
