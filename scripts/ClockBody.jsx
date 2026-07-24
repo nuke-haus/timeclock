@@ -59,6 +59,10 @@ class ClockBody extends React.Component {
         return String(value).toUpperCase();
     }
 
+    _hasValidCode() {
+        return TC.isCodeValid(this.state.code);
+    }
+
     _onClick(value) {
         this.setState({code: this.state.code + value});
     }
@@ -71,6 +75,42 @@ class ClockBody extends React.Component {
 
     _onClickClear() {
         this.setState({code: ""});
+    }
+
+    _onClickEnter() {
+        TC.enterCode(this.state.code);
+        this.setState({code: ""});
+    }
+
+    _renderEnterButton() {
+        if (TC.isCodeLength4(this.state.code)) {
+            let data = TC.getUserData(this.state.code);
+            if (data != null) {
+                let string = "Hello, " + name;
+                let buttonString = "Clock In";
+
+                return (
+                    <div>
+                        <span>{string}</span>
+                        <button onClick={() => this._onClickEnter()}>{buttonString}</button>
+                    </div>
+                );
+            }
+            else {
+                if (TC.canAddNewUser(this.state.code)) {
+                    let string = "Hello!";
+                    let buttonString = "Create User";
+
+                    return (
+                        <div>
+                            <span>{string}</span>
+                            <button onClick={() => this._onClickEnter()}>{buttonString}</button>
+                        </div>
+                    );
+                }
+            }
+        }
+        return null;
     }
 
     _renderClock() {
@@ -110,6 +150,7 @@ class ClockBody extends React.Component {
                     <span className="code">
                         {this.state.code}
                     </span>
+                    {this._renderEnterButton()}
                 </div>
             </div>
         );

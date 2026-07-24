@@ -1,7 +1,7 @@
 TC = {};
 
 TC.database = {};
-TC.database.people = {};
+TC.database.people = [];
 
 TC._jsonOutputLogic = function(key, value) {
     return (value == null || value === "" || value === NaN)
@@ -57,4 +57,18 @@ TC.deepCopy = function(object) {
 
 TC.areEqual = function(obj1, obj2) {
     return JSON.stringify(obj1 || "").localeCompare(JSON.stringify(obj2 || "")) === 0;
+}
+
+// Timeclock logic
+
+TC.isCodeLength4 = function(code) {
+    return code.length == 4;
+}
+
+TC.canAddNewUser = function(code) {
+    return TC.getUserData(code) == null && code.length == 4;
+}
+
+TC.getUserData = function(code) {
+    return TC.database.people.find(x => x.code === code)
 }

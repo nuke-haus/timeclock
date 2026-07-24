@@ -212,8 +212,6 @@ table, td, th {
 
 .code {
     color: #AA2222;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
     font-weight: bold;
     font-size: 64px;
     text-align: center;
