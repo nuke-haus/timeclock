@@ -18,6 +18,16 @@ class ClockBody extends React.Component {
         this.setState({code: this.state.code + value});
     }
 
+    _onClickBackspace() {
+        let str = this.state.code;
+        str = str.slice(0, -1);
+        this.setState({code: str});
+    }
+
+    _onClickClear() {
+        this.setState({code: ""});
+    }
+
     _renderClock() {
 
         const now = new Date();
@@ -52,29 +62,29 @@ class ClockBody extends React.Component {
     _renderKeypad() {
 
         return (
-            <div>
+            <div className="keypadDiv">
                 <span>
                     {this.state.code}
                 </span>
                 <div>
                     <button onClick={() => this._onClick("1")}>1</button>
-                    <button>2</button>
-                    <button>3</button>
+                    <button onClick={() => this._onClick("2")}>2</button>
+                    <button onClick={() => this._onClick("3")}>3</button>
                 </div>
                 <div>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>6</button>
+                    <button onClick={() => this._onClick("4")}>4</button>
+                    <button onClick={() => this._onClick("5")}>5</button>
+                    <button onClick={() => this._onClick("6")}>6</button>
                 </div>
                 <div>
-                    <button>7</button>
-                    <button>8</button>
-                    <button>9</button>
+                    <button onClick={() => this._onClick("7")}>7</button>
+                    <button onClick={() => this._onClick("8")}>8</button>
+                    <button onClick={() => this._onClick("9")}>9</button>
                 </div>
                 <div>
-                    <button>◀</button>
-                    <button>0</button>
-                    <button>☒</button>
+                    <button onClick={() => this._onClickBackspace()}>🢀</button>
+                    <button onClick={() => this._onClick("0")}>0</button>
+                    <button onClick={() => this._onClickClear()}>☒</button>
                 </div>
             </div>
         );
@@ -84,7 +94,7 @@ class ClockBody extends React.Component {
         return (
             <div>
                 <div className="tabletext">
-                    TIMECLOCK
+                    
                 </div>
                 {this._renderKeypad()}
                 {this._renderClock()}
