@@ -22,7 +22,7 @@ class DatabaseBody extends React.Component {
         for (const [i, value] of TC.database.people.entries()) {
             result.push(
                 <tr key={'user' + i}>
-                    <td><button>{value.name}</button></td>
+                    <td><button className="databaseButton">{value.name}</button></td>
                     <td>{value.code}</td>
                     <td>{value.activeTimeSpan != null ? "CLOCKED IN" : "-"}</td>
                 </tr>

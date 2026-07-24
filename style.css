@@ -235,3 +235,9 @@ table, td, th {
     display: flex;
     justify-content: center;
 }
+
+.databaseButton {
+    text-align: center;
+    width: 100px;
+    font-size: 24px;
+}
