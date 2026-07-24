@@ -202,6 +202,8 @@ table, td, th {
     font-size: 64px;
     width: 500px;
     height: 100px;
+    left: 25%;
+    right: 25%;
 }
 
 .keypadDiv {
