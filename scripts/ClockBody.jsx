@@ -64,9 +64,9 @@ class ClockBody extends React.Component {
         return TC.isCodeValid(this.state.code);
     }
 
-    _onNameChanged(value) {
-        console.log(value)
-        this.setState({name: value});
+    _onNameChanged(ev) {
+        console.log(ev.currentTarget);
+        this.setState({name: ev.currentTarget});
     }
 
     _onClick(value) {
