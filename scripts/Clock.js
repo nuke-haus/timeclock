@@ -73,6 +73,10 @@ TC.getUserData = function(code) {
     return TC.database.people.find(x => x.code == code)
 }
 
+TC.getUserIndex = function(code) {
+    return TC.database.people.findIndex(x => x.code == code);
+}
+
 TC.addNewUser = function(code, name) {
     let user = {
         code: code,
@@ -92,4 +96,30 @@ TC.isUserClockedIn = function(code) {
         return data.activeTimeSpan != null;
     }
     return false;
+}
+
+TC.enterCode = function(code) {
+    let data = TC.getUserData(code);
+    let index = TC.getUserIndex(code);
+    if (data != null) {
+        if (TC.isUserClockedIn(code)) {
+            let timeSpan = data.activeTimeSpan;
+            let now = new Date();
+            let diff = TC.differenceInTime(timeSpan, now);
+            TC.database.people[index].timeSpans.push({
+                time: diff,
+                date: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
+            });
+            TC.database.people[index].activeTimeSpan = null;
+        } else {
+            TC.database.people[index].activeTimeSpan = new Date();
+        }
+    }
+}
+
+TC.differenceInTime = function(dt1, dt2) {
+  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+  diff /= (60 * 60);
+  // Return the absolute value of the rounded difference in hours
+  return Math.abs(diff);
 }
