@@ -198,9 +198,9 @@ class ClockBody extends React.Component {
                         <button className="keypadButton" onClick={() => this._onClick("9")}>9</button>
                     </div>
                     <div>
-                        <button className="keypadButton" onClick={() => this._onClickBackspace()}>🢀</button>
+                        <button className="keypadButton" onClick={() => this._onClickBackspace()}>◀️</button>
                         <button className="keypadButton" onClick={() => this._onClick("0")}>0</button>
-                        <button className="keypadButton" onClick={() => this._onClickClear()}>☒</button>
+                        <button className="keypadButton" onClick={() => this._onClickClear()}>🆑</button>
                     </div>
                     <span className="code">
                         {this.state.code}
