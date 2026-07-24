@@ -8,7 +8,7 @@ class ClockBody extends React.Component {
     };
 
     componentDidMount() {
-        this.interval = setInterval(() => this.setState({ date: _formatAMPM(new Date()) }), 1000);
+        this.interval = setInterval(() => this.setState({ date: this._formatAMPM(new Date()) }), 1000);
     }
 
     componentWillUnmount() {
