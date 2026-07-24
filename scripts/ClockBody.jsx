@@ -115,7 +115,12 @@ class ClockBody extends React.Component {
 
                 let trans = `scale(${TC.effects[i].size}) rotate(${TC.effects[i].rotation}deg) translate(${TC.effects[i].xpos}px -${TC.effects[i].ypos}px)`
                 let style = {
-                    transform: trans,
+                    //transform: trans,
+                    transform: "translate(-50%, -50%)",
+                    position: "absolute",
+                    transition: "0.1s ease-out",
+                    left: TC.effects[i].xpos + 'px',
+                    bottom: TC.effects[i].ypos + 'px'
                     //position: "fixed",
                     //bottom: "0%"  
                 };
