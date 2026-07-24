@@ -216,7 +216,9 @@ table, td, th {
 }
 
 .code {
-    color: #66AADD;
+    color: #990000;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
     font-size: 64px;
     text-align: center;
 }
@@ -228,7 +230,7 @@ table, td, th {
 }
 
 .keypadContainerDiv {
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }

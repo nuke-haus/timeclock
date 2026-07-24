@@ -83,9 +83,6 @@ class ClockBody extends React.Component {
         return (
             <div className="keypadContainerDiv">
                 <div className="keypadDiv">
-                    <span className="code">
-                        {this.state.code}
-                    </span>
                     <div>
                         <button onClick={() => this._onClick("1")}>1</button>
                         <button onClick={() => this._onClick("2")}>2</button>
@@ -106,6 +103,9 @@ class ClockBody extends React.Component {
                         <button onClick={() => this._onClick("0")}>0</button>
                         <button onClick={() => this._onClickClear()}>☒</button>
                     </div>
+                    <span className="code">
+                        {this.state.code}
+                    </span>
                 </div>
             </div>
         );
