@@ -4,7 +4,7 @@ class ClockBody extends React.Component {
     state = {
         isDirty: false,
         code: "",
-        name: "",
+        name: "Stinky",
         date: ""
     };
 
@@ -64,6 +64,10 @@ class ClockBody extends React.Component {
         return TC.isCodeValid(this.state.code);
     }
 
+    _onNameChanged(value) {
+        this.setState({name: value});
+    }
+
     _onClick(value) {
         this.setState({code: this.state.code + value});
     }
@@ -113,6 +117,9 @@ class ClockBody extends React.Component {
                         <div>
                             <div>
                                 <span>{string}</span>
+                            </div>
+                            <div>
+                                <input type="text" defaultValue="Stinky" onChange={(value) => this._onNameChanged(value)}></input>
                             </div>
                             <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
                         </div>

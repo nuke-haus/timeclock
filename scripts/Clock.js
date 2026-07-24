@@ -62,7 +62,6 @@ TC.areEqual = function(obj1, obj2) {
 // Timeclock logic
 
 TC.isCodeLength4 = function(code) {
-    console.log("Length is " + code.length)
     return code.length == 4;
 }
 
