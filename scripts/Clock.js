@@ -111,8 +111,12 @@ TC.enterCode = function(code) {
                 date: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
             });
             TC.database.people[index].activeTimeSpan = null;
+
+            console.log("Clocked out " + data.name + " - " + diff);
         } else {
             TC.database.people[index].activeTimeSpan = new Date();
+
+            console.log("Clocked in " + data.name);
         }
     }
 }
