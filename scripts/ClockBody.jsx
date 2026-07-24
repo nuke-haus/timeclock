@@ -124,7 +124,7 @@ class ClockBody extends React.Component {
                 };
 
                 result.push(
-                    <div key={"emojiEffect" + i} style={style}>
+                    <div key={"emoji" + value.name} style={style}>
                         {value.text}    
                     </div>
                 );

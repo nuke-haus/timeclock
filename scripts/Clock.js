@@ -149,7 +149,8 @@ TC.addEffects = function() {
             rotate: (Math.random() * -6) + 3,
             size: (Math.random() * 3) + 1,
             speed: (Math.random() * 3) + 1,
-            wobble: (Math.random() * 20)
+            wobble: (Math.random() * 20),
+            name: new Date().getMilliseconds() + "emoji" + i
         });
     }
 }
