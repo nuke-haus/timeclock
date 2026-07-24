@@ -65,6 +65,7 @@ class ClockBody extends React.Component {
     }
 
     _onNameChanged(value) {
+        console.log(value)
         this.setState({name: value});
     }
 
@@ -92,7 +93,6 @@ class ClockBody extends React.Component {
     }
 
     _renderEnterButton() {
-        console.log(TC.isCodeLength4(this.state.code));
         if (TC.isCodeLength4(this.state.code)) {
             let data = TC.getUserData(this.state.code);
             if (data != null) {
@@ -114,7 +114,7 @@ class ClockBody extends React.Component {
             }
             else {
                 if (TC.canAddNewUser(this.state.code)) {
-                    let string = "Hello!";
+                    let string = "Hello, please enter a name to create a new user...";
                     let buttonString = "Create User";
 
                     return (
@@ -123,7 +123,7 @@ class ClockBody extends React.Component {
                                 <span>{string}</span>
                             </div>
                             <div>
-                                <input className="keypadName" type="text" defaultValue="Stinky" onChange={(value) => this._onNameChanged(value)}></input>
+                                <input className="keypadName" type="text" defaultValue="Stinky" onInput={(value) => this._onNameChanged(value)}></input>
                             </div>
                             <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
                         </div>

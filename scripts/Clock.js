@@ -83,7 +83,7 @@ TC.addNewUser = function(code, name) {
 
     TC.database.people.push(user);
 
-    console.log("Added new user " + user.name + " with code " + user.code);
+    console.log("Added new user '" + user.name + "' with code " + user.code);
 }
 
 TC.isUserClockedIn = function(code) {
