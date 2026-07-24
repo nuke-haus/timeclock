@@ -41,7 +41,7 @@ button {
     border-radius: 4px; 
     box-shadow: inset 3px 3px 1px #81ce84, inset -3px -3px 1px #357e37;
     color: #000000;
-    padding: 14px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     font-size: 64px;
@@ -227,7 +227,7 @@ table, td, th {
 
 .keypadButton {
     text-align: center;
-    width: 94px;
+    width: 100px;
 }
 
 .keypadContainerDiv {

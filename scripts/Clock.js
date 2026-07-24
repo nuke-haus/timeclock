@@ -132,7 +132,7 @@ TC.differenceInTime = function(dt1, dt2) {
 TC.addEffects = function() {
     let viewportWidth = window.innerWidth;
     let viewportHeight = window.innerHeight;
-    let emojis = ['🎈', '🤡', '🐀', '🍕', '✨', '⭐', '🚀', '🪐', '🤪', '⌛', '🌭', '🍎', '🫘', '🍫', '🍗', '🪠', '👻', '🎷', '🎺', '🍁', '🍌', '🧀', '😀', '💩', '🍦', '🍓', '👽', '🗿', '🚗', '⚓', '🫃'];
+    let emojis = ['🎈', '🤡', '🐀', '🍕', '✨', '⭐', '🚀', '🪐', '🤪', '🥸', '⌛', '🌭', '🍎', '🫘', '🍫', '🍗', '🪙', '🪠', '👻', '😼', '🎷', '🎺', '🍁', '🍌', '🧀', '😀', '💩', '🍦', '🍓', '👽', '🗿', '🚗', '⚓', '🫃'];
     let emote = TC.rand(emojis);
     let doRand = true;
 
