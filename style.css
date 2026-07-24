@@ -1,6 +1,6 @@
 body {
     font-size: 24px;
-  	font-family: 'Lekton', sans-serif;
+  	font-family: 'Oxygen Mono', sans-serif;
 	
     color: #000000;
     background-color: #6f8c7d;
@@ -39,7 +39,7 @@ button {
     background-color: #4CAF50;
     border: 2px solid #000000;
     border-radius: 4px; 
-    box-shadow: inset 2px 2px 1px #81ce84, inset -2px -2px 1px #357e37;
+    box-shadow: inset 3px 3px 1px #81ce84, inset -3px -3px 1px #357e37;
     color: #000000;
     padding: 14px;
     text-align: center;
