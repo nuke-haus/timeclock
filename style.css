@@ -198,54 +198,13 @@ table, td, th {
     width: 100%;
 }
 
-section {
-  transform: translateY(-3px);
-}
-
-section span:nth-child(1) {
-  width: 50%;
-  height: 3px;
-  background: #e63946;
-  position: relative;
-  top: 50%;
-  left: 0%;
-  display: inline-block;
-}
-
-section span:nth-child(2) {
-  left: 5%;
-  width: 55%;
-  height: 5px;
-  position: relative;
-  top: 50%;
-  left: 0%;
-  display: inline-block;
-}
-
-section span:nth-child(3) {
-  left: 10%;
-  width: 40%;
-  height: 7px;
-  position: relative;
-  top: 50%;
-  left: 0%;
-  display: inline-block;
-}
-
-.clockspan {
-  background: #bed579;
-  transform: rotate(90deg);
-  transform-origin: 100%;
-  transition: all 0.05s;
-  transition-timing-function: cubic-bezier(0.1, 2.5, 0.55, 1);
-}
-
 .clockdiv {
-  width: 500px;
-  height: 500px;
-  float: left;
+    font-size: 64px;
+    width: 500px;
+    height: 100px;
 }
 
 .keypadDiv {
-    float: left;
+    left: 25%;
+    right: 25%;
 }

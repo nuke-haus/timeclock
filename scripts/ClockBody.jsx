@@ -3,8 +3,42 @@ class ClockBody extends React.Component {
 
     state = {
         isDirty: false,
-        code: ""
+        code: "",
+        date: ""
     };
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.setState({ date: _formatAMPM(new Date()) }), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    _formatAMPM(date) {
+        var hours = date.getHours();
+        var days = date.getDay();
+        var minutes = date.getMinutes();
+
+        // gets AM/PM
+        var ampm = hours >= 12 ? 'pm' : 'am';
+
+        // converts hours to 12 hour instead of 24 hour
+        hours = hours % 12;
+
+        // converts 0 (midnight) to 12
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+
+        // converts minutes to have leading 0
+        minutes = minutes < 10 ? '0'+ minutes : minutes;
+    
+        // the time string
+        var time = hours + ':' + minutes + ' ' + ampm;
+    
+        // gets the match for the date string we want
+        var match = date.toString().match(/\w{3} \w{3} \d{1,2} \d{4}/);
+        return match[0] + ' ' + time;
+    }
 
     _formatLower(value) {
         return String(value).toLowerCase();
@@ -29,38 +63,16 @@ class ClockBody extends React.Component {
     }
 
     _renderClock() {
-
-        const now = new Date();
-        const seconds = now.getSeconds();
-        const secondsDegrees = (seconds / 60) * 360 + 90;
-        const minutes = now.getMinutes();
-        const minutesDegrees = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
-        const hours = now.getHours();
-        const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30 + 90;
-
-        const style1 = {
-            transform: `rotate(${secondsDegrees}deg)`
-        };
-        const style2 = {
-            transform: `rotate(${minutesDegrees}deg)`
-        };
-        const style3 = {
-            transform: `rotate(${hoursDegrees}deg)`
-        };
-
         return (
             <div className="clockdiv">
-                 <section>
-                    <span className="clockspan" style={style1}></span>
-                    <span className="clockspan" style={style2}></span>
-                    <span className="clockspan" style={style3}></span>
-                </section>
+                 <span>
+                    {this.state.date}
+                 </span>
             </div>
         );
     }
 
     _renderKeypad() {
-
         return (
             <div className="keypadDiv">
                 <span>
@@ -96,8 +108,8 @@ class ClockBody extends React.Component {
                 <div className="tabletext">
                     
                 </div>
-                {this._renderKeypad()}
                 {this._renderClock()}
+                {this._renderKeypad()}
             </div>
         );
     }
