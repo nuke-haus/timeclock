@@ -85,3 +85,11 @@ TC.addNewUser = function(code, name) {
 
     console.log("Added new user " + user.name + " with code " + user.code);
 }
+
+TC.isUserClockedIn = function(code) {
+    let data = TC.getUserData(code);
+    if (data != null) {
+        return data.activeTimeSpan != null;
+    }
+    return false;
+}
