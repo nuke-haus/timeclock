@@ -23,7 +23,7 @@ class ClockBody extends React.Component {
         for (const [i, value] of TC.effects.entries()) {
             if (TC.effects[i].ypos < window.innerHeight) {
                 TC.effects[i].ypos = TC.effects[i].ypos + TC.effects[i].speed;
-                TC.effects[i].xpos = TC.effects[i].xpos + (Math.sin(new Date().getMilliseconds() * 0.1) * TC.effects[i].wobble);
+                TC.effects[i].xwobb = (Math.sin(new Date().getMilliseconds() * 0.1) * TC.effects[i].wobble);
                 TC.effects[i].rotation = TC.effects[i].rotation + TC.effects[i].rotate;
             }
         }
@@ -119,7 +119,7 @@ class ClockBody extends React.Component {
                     transform: `translate(-50%, -50%) rotate(${value.rotation}deg) scale(${value.size})`,
                     position: "absolute",
                     transition: "0.1s ease-out",
-                    left: value.xpos + 'px',
+                    left: value.xpos + value.xwobb + 'px',
                     bottom: value.ypos + 'px'
                 };
 

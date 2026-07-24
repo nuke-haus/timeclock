@@ -143,6 +143,7 @@ TC.addEffects = function() {
     for (let i = 0; i < 15; i++) {
         TC.effects.push({
             text: doRand ? TC.rand(emojis) : emote,
+            xwobb: 0,
             xpos: Math.random() * viewportWidth,
             ypos: 0,
             rotation: Math.random() * 360,
