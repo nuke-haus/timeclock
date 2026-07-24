@@ -115,10 +115,9 @@ class ClockBody extends React.Component {
         for (const [i, value] of this.state.effects.entries()) {
             if (TC.effects[i].ypos < window.innerHeight) {
 
-                let trans = `scale(${TC.effects[i].size}) rotate(${TC.effects[i].rotation}deg) translate(${TC.effects[i].xpos}px -${TC.effects[i].ypos}px)`
                 let style = {
                     //transform: trans,
-                    transform: "translate(-50%, -50%)",
+                    transform: `translate(-50%, -50%) rotate(${value.rotation}deg) scale(${value.size})`,
                     position: "absolute",
                     transition: "0.1s ease-out",
                     left: TC.effects[i].xpos + 'px',
