@@ -113,22 +113,19 @@ class ClockBody extends React.Component {
         let result = [];
 
         for (const [i, value] of this.state.effects.entries()) {
-            if (TC.effects[i].ypos < window.innerHeight) {
+            if (value.ypos < window.innerHeight) {
 
                 let style = {
-                    //transform: trans,
                     transform: `translate(-50%, -50%) rotate(${value.rotation}deg) scale(${value.size})`,
                     position: "absolute",
                     transition: "0.1s ease-out",
-                    left: TC.effects[i].xpos + 'px',
-                    bottom: TC.effects[i].ypos + 'px'
-                    //position: "fixed",
-                    //bottom: "0%"  
+                    left: value.xpos + 'px',
+                    bottom: value.ypos + 'px'
                 };
 
                 result.push(
                     <div key={"emojiEffect" + i} style={style}>
-                        {TC.effects[i].text}    
+                        {value.text}    
                     </div>
                 );
             }
