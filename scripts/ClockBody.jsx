@@ -4,6 +4,7 @@ class ClockBody extends React.Component {
     state = {
         isDirty: false,
         code: "",
+        name: "",
         date: ""
     };
 
@@ -82,6 +83,10 @@ class ClockBody extends React.Component {
         this.setState({code: ""});
     }
 
+    _onClickAddUser() {
+        TC.addNewUser(this.state.code, this.state.name);
+    }
+
     _renderEnterButton() {
         console.log(TC.isCodeLength4(this.state.code));
         if (TC.isCodeLength4(this.state.code)) {
@@ -105,7 +110,7 @@ class ClockBody extends React.Component {
                     return (
                         <div>
                             <span>{string}</span>
-                            <button onClick={() => this._onClickEnter()}>{buttonString}</button>
+                            <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
                         </div>
                     );
                 }

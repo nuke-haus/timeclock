@@ -62,6 +62,7 @@ TC.areEqual = function(obj1, obj2) {
 // Timeclock logic
 
 TC.isCodeLength4 = function(code) {
+    console.log("Length is " + code.length)
     return code.length == 4;
 }
 
@@ -71,4 +72,17 @@ TC.canAddNewUser = function(code) {
 
 TC.getUserData = function(code) {
     return TC.database.people.find(x => x.code === code)
+}
+
+TC.addNewUser = function(code, name) {
+    let user = {
+        code: code,
+        name: name,
+        timeSpans: [],
+        activeTimeSpan: null
+    };
+
+    TC.database.people.push(user);
+
+    console.log("Added new user " + user.name + " with code " + user.code);
 }
