@@ -18,6 +18,7 @@ class DatabaseBody extends React.Component {
     }
 
     _renderUsers() {
+        let result = [];
         for (const [i, value] of TC.database.people.entries()) {
             result.push(
                 <tr key={'user' + i}>
@@ -27,6 +28,7 @@ class DatabaseBody extends React.Component {
                 </tr>
             );
         }
+        return result;
     }
 
     _renderUserList() {
