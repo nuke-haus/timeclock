@@ -123,7 +123,7 @@ class ClockBody extends React.Component {
                                 <span>{string}</span>
                             </div>
                             <div>
-                                <input type="text" defaultValue="Stinky" onChange={(value) => this._onNameChanged(value)}></input>
+                                <input className="keypadName" type="text" defaultValue="Stinky" onChange={(value) => this._onNameChanged(value)}></input>
                             </div>
                             <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
                         </div>
