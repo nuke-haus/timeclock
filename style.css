@@ -45,7 +45,6 @@ button {
     text-align: center;
     text-decoration: none;
     font-size: 64px;
-    font-family: 'Work Sans', sans-serif;
     margin: 20px;
     width: 94px;
     cursor: pointer;
@@ -71,7 +70,6 @@ button:after {
     text-align: center;
     text-decoration: none;
     font-size: 24px;
-    font-family: 'Work Sans', sans-serif;
     margin: 4px;
     cursor: pointer;
 }
@@ -90,7 +88,6 @@ textarea {
     color: #000000;
     padding: 2px 6px;
     font-size: 24px;
-    font-family: 'Work Sans', sans-serif;
     margin: 4px;
     width: calc(100% - 24px);
     resize: vertical;
@@ -103,7 +100,6 @@ input {
     color: #000000;
     padding: 2px 6px;
     font-size: 24px;
-    font-family: 'Work Sans', sans-serif;
     margin: 4px;
     width: 80px;
 }
@@ -125,7 +121,6 @@ select {
     color: #000000;
     padding: 2px 6px;
     font-size: 24px;
-    font-family: 'Work Sans', sans-serif;
     margin: 4px;
     width: 200px;
 }
@@ -216,8 +211,8 @@ table, td, th {
 }
 
 .code {
-    color: #990000;
-    -webkit-text-stroke-width: 1px;
+    color: #AA2222;
+    -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
     font-weight: bold;
     font-size: 64px;
