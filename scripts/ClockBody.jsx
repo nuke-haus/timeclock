@@ -5,12 +5,13 @@ class ClockBody extends React.Component {
         isDirty: false,
         code: "",
         name: "Stinky",
-        date: ""
+        date: "",
+        effects: []
     };
 
     componentDidMount() {
         this.interval = setInterval(() => this._updateDate(), 1000);
-        this.interval2 = setInterval(() => this._updateEmojis(), 2);
+        this.interval2 = setInterval(() => this._updateEmojis(), 5);
     }
 
     componentWillUnmount() {
@@ -27,6 +28,7 @@ class ClockBody extends React.Component {
             }
         }
         TC.effects = TC.effects.filter(item => (item.ypos <= window.innerHeight));
+        this.setState({effects: TC.effects});
     }
 
     _updateDate() {
@@ -110,7 +112,7 @@ class ClockBody extends React.Component {
     _renderEmojis() {
         let result = [];
 
-        for (const [i, value] of TC.effects.entries()) {
+        for (const [i, value] of this.state.effects.entries()) {
             if (TC.effects[i].ypos < window.innerHeight) {
 
                 let trans = `scale(${TC.effects[i].size}) rotate(${TC.effects[i].rotation}deg) translate(${TC.effects[i].xpos}px -${TC.effects[i].ypos}px)`
