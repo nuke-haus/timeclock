@@ -83,6 +83,7 @@ class ClockBody extends React.Component {
     }
 
     _renderEnterButton() {
+        console.log(TC.isCodeLength4(this.state.code));
         if (TC.isCodeLength4(this.state.code)) {
             let data = TC.getUserData(this.state.code);
             if (data != null) {
