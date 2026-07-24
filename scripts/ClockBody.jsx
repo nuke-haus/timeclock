@@ -26,6 +26,7 @@ class ClockBody extends React.Component {
         var hours = date.getHours();
         var days = date.getDay();
         var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
 
         // gets AM/PM
         var ampm = hours >= 12 ? 'PM' : 'AM';
@@ -37,10 +38,13 @@ class ClockBody extends React.Component {
         hours = hours ? hours : 12; // the hour '0' should be '12'
 
         // converts minutes to have leading 0
-        minutes = minutes < 10 ? '0'+ minutes : minutes;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        // leading 0 for seconds
+        seconds = seconds < 10 ? '0' + seconds : seconds;
     
         // the time string
-        var time = hours + ':' + minutes + ' ' + ampm;
+        var time = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
     
         // gets the match for the date string we want
         var match = date.toString().match(/\w{3} \w{3} \d{1,2} \d{4}/);
