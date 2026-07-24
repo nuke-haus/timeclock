@@ -246,4 +246,9 @@ section span:nth-child(3) {
 .clockdiv {
   width: 500px;
   height: 500px;
+  float: left;
+}
+
+.keypadDiv {
+    float: left;
 }
