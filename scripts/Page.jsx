@@ -1,7 +1,7 @@
 class Page extends React.Component {
 
     NAV_CLOCK = "🕒";
-    NAV_DATABASE = "🗄";
+    NAV_DATABASE = "🗂️";
 
     state = {
         currentNav: "🕒"
