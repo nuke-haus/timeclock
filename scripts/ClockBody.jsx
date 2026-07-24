@@ -28,7 +28,7 @@ class ClockBody extends React.Component {
         var minutes = date.getMinutes();
 
         // gets AM/PM
-        var ampm = hours >= 12 ? 'pm' : 'am';
+        var ampm = hours >= 12 ? 'PM' : 'AM';
 
         // converts hours to 12 hour instead of 24 hour
         hours = hours % 12;
@@ -83,7 +83,7 @@ class ClockBody extends React.Component {
         return (
             <div className="keypadContainerDiv">
                 <div className="keypadDiv">
-                    <span>
+                    <span className="code">
                         {this.state.code}
                     </span>
                     <div>

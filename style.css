@@ -205,6 +205,11 @@ table, td, th {
     text-align: center;
 }
 
+.code {
+    color: #66AADD;
+    font-size: 64px;
+}
+
 .keypadDiv {
     left: 25%;
     right: 25%;
