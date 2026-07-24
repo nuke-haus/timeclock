@@ -136,13 +136,13 @@ TC.addEffects = function() {
 
     for (let i = 0; i < 15; i++) {
         TC.effects.push({
-            text = TC.rand(emojis),
-            xpos = Math.random() * viewportWidth,
-            ypos = 0,
-            rotation = Math.random() * 360,
-            size = (Math.random() * 2) + 1,
-            speed = (Math.random() * 3) + 1,
-            wobble = (Math.random() * 8)
+            text: TC.rand(emojis),
+            xpos: Math.random() * viewportWidth,
+            ypos: 0,
+            rotation: Math.random() * 360,
+            size: (Math.random() * 2) + 1,
+            speed: (Math.random() * 3) + 1,
+            wobble: (Math.random() * 8)
         });
     }
 }
