@@ -97,7 +97,9 @@ class ClockBody extends React.Component {
 
                 return (
                     <div>
-                        <span>{string}</span>
+                        <div>
+                            <span>{string}</span>
+                        </div>
                         <button onClick={() => this._onClickEnter()}>{buttonString}</button>
                     </div>
                 );
@@ -109,7 +111,9 @@ class ClockBody extends React.Component {
 
                     return (
                         <div>
-                            <span>{string}</span>
+                            <div>
+                                <span>{string}</span>
+                            </div>
                             <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
                         </div>
                     );
@@ -134,24 +138,24 @@ class ClockBody extends React.Component {
             <div className="keypadContainerDiv">
                 <div className="keypadDiv">
                     <div>
-                        <button onClick={() => this._onClick("1")}>1</button>
-                        <button onClick={() => this._onClick("2")}>2</button>
-                        <button onClick={() => this._onClick("3")}>3</button>
+                        <button className="keypadButton" onClick={() => this._onClick("1")}>1</button>
+                        <button className="keypadButton" onClick={() => this._onClick("2")}>2</button>
+                        <button className="keypadButton" onClick={() => this._onClick("3")}>3</button>
                     </div>
                     <div>
-                        <button onClick={() => this._onClick("4")}>4</button>
-                        <button onClick={() => this._onClick("5")}>5</button>
-                        <button onClick={() => this._onClick("6")}>6</button>
+                        <button className="keypadButton" onClick={() => this._onClick("4")}>4</button>
+                        <button className="keypadButton" onClick={() => this._onClick("5")}>5</button>
+                        <button className="keypadButton" onClick={() => this._onClick("6")}>6</button>
                     </div>
                     <div>
-                        <button onClick={() => this._onClick("7")}>7</button>
-                        <button onClick={() => this._onClick("8")}>8</button>
-                        <button onClick={() => this._onClick("9")}>9</button>
+                        <button className="keypadButton" onClick={() => this._onClick("7")}>7</button>
+                        <button className="keypadButton" onClick={() => this._onClick("8")}>8</button>
+                        <button className="keypadButton" onClick={() => this._onClick("9")}>9</button>
                     </div>
                     <div>
-                        <button onClick={() => this._onClickBackspace()}>🢀</button>
-                        <button onClick={() => this._onClick("0")}>0</button>
-                        <button onClick={() => this._onClickClear()}>☒</button>
+                        <button className="keypadButton" onClick={() => this._onClickBackspace()}>🢀</button>
+                        <button className="keypadButton" onClick={() => this._onClick("0")}>0</button>
+                        <button className="keypadButton" onClick={() => this._onClickClear()}>☒</button>
                     </div>
                     <span className="code">
                         {this.state.code}

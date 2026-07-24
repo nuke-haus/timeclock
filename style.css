@@ -46,7 +46,6 @@ button {
     text-decoration: none;
     font-size: 64px;
     margin: 20px;
-    width: 94px;
     cursor: pointer;
 }
 
@@ -221,6 +220,10 @@ table, td, th {
     left: 25%;
     right: 25%;
     text-align: center;
+}
+
+.keypadButton {
+    width: 94px;
 }
 
 .keypadContainerDiv {
