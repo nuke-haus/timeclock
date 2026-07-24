@@ -96,7 +96,7 @@ class ClockBody extends React.Component {
         if (TC.isCodeLength4(this.state.code)) {
             let data = TC.getUserData(this.state.code);
             if (data != null) {
-                let string = "Hello, " + name;
+                let string = "Hello, " + data.name;
                 let buttonString = "Clock In";
 
                 if (TC.isUserClockedIn(this.state.code)) {

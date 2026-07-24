@@ -70,7 +70,7 @@ TC.canAddNewUser = function(code) {
 }
 
 TC.getUserData = function(code) {
-    return TC.database.people.find(x => x.code === code)
+    return TC.database.people.find(x => x.code == code)
 }
 
 TC.addNewUser = function(code, name) {
