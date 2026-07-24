@@ -146,7 +146,7 @@ TC.addEffects = function() {
             xpos: Math.random() * viewportWidth,
             ypos: 0,
             rotation: Math.random() * 360,
-            size: (Math.random() * 2) + 1,
+            size: (Math.random() * 3) + 1,
             speed: (Math.random() * 3) + 1,
             wobble: (Math.random() * 8)
         });
