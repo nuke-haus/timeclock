@@ -2,6 +2,7 @@ TC = {};
 
 TC.database = {};
 TC.database.people = [];
+TC.effects = [];
 
 TC._jsonOutputLogic = function(key, value) {
     return (value == null || value === "" || value === NaN)
@@ -122,8 +123,30 @@ TC.enterCode = function(code) {
 }
 
 TC.differenceInTime = function(dt1, dt2) {
-  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
-  diff /= (60 * 60);
-  // Return the absolute value of the rounded difference in hours
-  return Math.abs(diff);
+    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+    diff /= (60 * 60);
+  
+    return Math.abs(diff);
+}
+
+TC.addEffects = function() {
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+    let emojis = ['🎈', '🤡', '🐀', '🍕', '✨', '⭐', '🚀', '🪐', '🤪', '⌛', '🌭', '👻', '🎷', '🍁', '🍌', '🧀', '😀'];
+
+    for (let i = 0; i < 15; i++) {
+        TC.effects.push({
+            text = TC.rand(emojis),
+            xpos = Math.random() * viewportWidth,
+            ypos = 0,
+            rotation = Math.random() * 360,
+            size = (Math.random() * 2) + 1,
+            speed = (Math.random() * 3) + 1,
+            wobble = (Math.random() * 8)
+        });
+    }
+}
+
+TC.rand = function(items) {
+    return items[items.length * Math.random() | 0];
 }

@@ -10,10 +10,23 @@ class ClockBody extends React.Component {
 
     componentDidMount() {
         this.interval = setInterval(() => this._updateDate(), 1000);
+        this.interval2 = setInterval(() => this._updateEmojis(), 2);
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
+        clearInterval(this.interval2);
+    }
+
+    _updateEmojis() {
+        for (const [i, value] of TC.effects.entries()) {
+            if (TC.effects[i].ypos < window.innerHeight) {
+                TC.effects[i].ypos = TC.effects[i].ypos + TC.effects[i].speed;
+                TC.effects[i].xpos = TC.effects[i].xpos + (Math.sin(new Date().getMilliseconds()) * TC.effects[i].wobble);
+                TC.effects[i].rotation = TC.effects[i].rotation + 1;
+            }
+        }
+        TC.effects = TC.effects.filter(item => !(item.ypos > window.innerHeight));
     }
 
     _updateDate() {
@@ -86,10 +99,29 @@ class ClockBody extends React.Component {
     _onClickEnter() {
         TC.enterCode(this.state.code);
         this.setState({code: ""});
+        TC.addEffects();
     }
 
     _onClickAddUser() {
         TC.addNewUser(this.state.code, this.state.name);
+        TC.addEffects();
+    }
+
+    _renderEmojis() {
+        let result = [];
+
+        for (const [i, value] of TC.effects.entries()) {
+            if (TC.effects[i].ypos < window.innerHeight) {
+                let style = `transform: scale(${TC.effects[i].size}) rotate(${TC.effects[i].rotation}deg) translate(${TC.effects[i].xpos}px -${TC.effects[i].ypos}px)`
+                result.push(
+                    <div key={"emojiEffect" + i} className="effect" style={style}>
+                        {element.text}    
+                    </div>
+                );
+            }
+        }
+
+        return result;
     }
 
     _renderEnterButton() {
@@ -185,6 +217,7 @@ class ClockBody extends React.Component {
                 </div>
                 {this._renderClock()}
                 {this._renderKeypad()}
+                {this._renderEmojis()}
             </div>
         );
     }
