@@ -199,9 +199,6 @@ table, td, th {
 }
 
 section {
-  padding: 49%;
-  width: 80%;
-  height: 80%;
   transform: translateY(-3px);
 }
 
