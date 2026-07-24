@@ -51,6 +51,16 @@ button {
     cursor: pointer;
 }
 
+button:before {
+    background-color: #4be9b7;
+    transition: opacity .3s ease-in-out;
+}
+
+button:after {
+    background-color: #0c8d86;
+    transition: opacity .3s ease-in-out;
+}
+
 ::-webkit-file-upload-button {
     background-color: #4CAF50;
     border: 2px solid #000000;
@@ -208,11 +218,13 @@ table, td, th {
 .code {
     color: #66AADD;
     font-size: 64px;
+    text-align: center;
 }
 
 .keypadDiv {
     left: 25%;
     right: 25%;
+    text-align: center;
 }
 
 .keypadContainerDiv {
