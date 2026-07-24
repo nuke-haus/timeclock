@@ -226,6 +226,7 @@ table, td, th {
 }
 
 .keypadButton {
+    text-align: center;
     width: 94px;
 }
 

@@ -113,7 +113,10 @@ class ClockBody extends React.Component {
         for (const [i, value] of TC.effects.entries()) {
             if (TC.effects[i].ypos < window.innerHeight) {
 
-                let style = `transform: scale(${TC.effects[i].size}) rotate(${TC.effects[i].rotation}deg) translate(${TC.effects[i].xpos}px -${TC.effects[i].ypos}px)`
+                let trans = `scale(${TC.effects[i].size}) rotate(${TC.effects[i].rotation}deg) translate(${TC.effects[i].xpos}px -${TC.effects[i].ypos}px)`
+                let style = {
+                    transform: trans
+                }
 
                 result.push(
                     <div key={"emojiEffect" + i} className="effect" style={style}>
