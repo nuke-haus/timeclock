@@ -199,6 +199,7 @@ table, td, th {
 }
 
 section {
+  padding: 49%;
   width: 80%;
   height: 80%;
   transform: translateY(-3px);
@@ -208,23 +209,31 @@ section span:nth-child(1) {
   width: 50%;
   height: 3px;
   background: #e63946;
+  position: relative;
+  top: 50%;
+  left: 0%;
 }
 
 section span:nth-child(2) {
   left: 5%;
   width: 55%;
   height: 5px;
+  position: relative;
+  top: 50%;
+  left: 0%;
 }
 
 section span:nth-child(3) {
   left: 10%;
   width: 40%;
   height: 7px;
+  position: relative;
+  top: 50%;
+  left: 0%;
 }
 
 .clockspan {
   background: #bed579;
-  width: 100px;
   transform: rotate(90deg);
   transform-origin: 100%;
   transition: all 0.05s;
