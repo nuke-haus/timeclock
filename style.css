@@ -209,3 +209,9 @@ table, td, th {
     left: 25%;
     right: 25%;
 }
+
+.keypadContainerDiv {
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
