@@ -235,8 +235,3 @@ table, td, th {
     display: flex;
     justify-content: center;
 }
-
-.effect {
-    position: fixed;
-    bottom: 0%;   
-}
