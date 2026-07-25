@@ -1,7 +1,7 @@
 class DatabaseBody extends React.Component {
 
     state = {
-       
+       user = null
     };
 
     _formatName(value) {
@@ -15,6 +15,41 @@ class DatabaseBody extends React.Component {
 
     _formatUpper(value) {
         return String(value).toUpperCase();
+    }
+
+    _renderSingleUser() {
+        if (this.state.user == null) {
+            return null;
+        }
+
+        let str = "USER DATA FOR " + this.state.user.name;
+        return (
+            <div>
+                <div className="tabletext">
+                    {str}
+                </div>
+                <table className="formulatablesmall">
+                    <tbody>
+                        <tr>
+                            <th>DATE</th>
+                            <th>TIME LOGGED</th>
+                        </tr>
+                        {this._renderUserData()}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    _renderUserData() {
+        for (const [i, value] of this.state.user.timeSpans.entries()) {
+            result.push(
+                <tr key={'user' + i}>
+                    <td>{value.date}</td>
+                    <td>{value.time}</td>
+                </tr>
+            );
+        }
     }
 
     _renderUsers() {
@@ -55,10 +90,11 @@ class DatabaseBody extends React.Component {
     }
 
     render() {
-    
         return (
             <div>
                 {this._renderUserList()}
+                <br/>
+                {this._renderSingleUser()}
             </div>
         );
     }
