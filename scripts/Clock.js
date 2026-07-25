@@ -136,21 +136,24 @@ TC.addEffects = function() {
     let emote = TC.rand(emojis);
     let doRand = true;
 
-    if (Math.random() < 0.01) {
+    if (Math.random() < 0.02) {
         doRand = false;
     }
+
+    let margin = viewportWidth * 0.2;
 
     for (let i = 0; i < 15; i++) {
         TC.effects.push({
             text: doRand ? TC.rand(emojis) : emote,
             xwobb: 0,
-            xpos: Math.random() * viewportWidth,
+            xpos: (Math.random() * (viewportWidth - 2 * margin)) + margin,
             ypos: 0,
             rotation: Math.random() * 360,
             rotate: (Math.random() * -6) + 3,
-            size: (Math.random() * 3) + 1,
-            speed: (Math.random() * 3) + 1,
-            wobble: (Math.random() * 80),
+            size: (Math.random() * 3.5) + 1.2,
+            speed: (Math.random() * 4) + 0.5,
+            wobble: (Math.random() * 200),
+            wobbleSpd: Math.random() * 0.01,
             name: new Date().getMilliseconds() + "emoji" + i
         });
     }
