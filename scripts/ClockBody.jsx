@@ -91,13 +91,16 @@ class ClockBody extends React.Component {
 
     _onClickEnter() {
         TC.enterCode(this.state.code);
-        this.setState({code: ""});
         TC.addEffects();
+
+        this.setState({code: ""});
     }
 
     _onClickAddUser() {
         TC.addNewUser(this.state.code, this.state.name);
         TC.addEffects();
+
+        this.setState({code: ""});
     }
 
     _renderEmojis() {
