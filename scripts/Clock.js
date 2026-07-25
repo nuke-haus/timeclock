@@ -106,7 +106,7 @@ TC.enterCode = function(code) {
             let diff = TC.differenceInTime(timeSpan, now);
             TC.database.people[index].timeSpans.push({
                 time: diff,
-                date: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
+                date: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toString()
             });
             TC.database.people[index].activeTimeSpan = null;
 
