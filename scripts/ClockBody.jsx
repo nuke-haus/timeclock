@@ -79,23 +79,14 @@ class ClockBody extends React.Component {
         return TC.isCodeValid(this.state.code);
     }
 
+    _onCodeChanged(ev) {
+        console.log(ev.currentTarget.value);
+        this.setState({code: ev.currentTarget.value});
+    }
+
     _onNameChanged(ev) {
-        console.log(ev.currentTarget);
-        this.setState({name: ev.currentTarget});
-    }
-
-    _onClick(value) {
-        this.setState({code: this.state.code + value});
-    }
-
-    _onClickBackspace() {
-        let str = this.state.code;
-        str = str.slice(0, -1);
-        this.setState({code: str});
-    }
-
-    _onClickClear() {
-        this.setState({code: ""});
+        console.log(ev.currentTarget.value);
+        this.setState({name: ev.currentTarget.value});
     }
 
     _onClickEnter() {
@@ -191,28 +182,8 @@ class ClockBody extends React.Component {
             <div className="keypadContainerDiv">
                 <div className="keypadDiv">
                     <div>
-                        <button className="keypadButton" onClick={() => this._onClick("1")}>1</button>
-                        <button className="keypadButton" onClick={() => this._onClick("2")}>2</button>
-                        <button className="keypadButton" onClick={() => this._onClick("3")}>3</button>
+                        <input className="keypadName" type="text" defaultValue="Stinky" onInput={(value) => this._onCodeChanged(value)}></input>
                     </div>
-                    <div>
-                        <button className="keypadButton" onClick={() => this._onClick("4")}>4</button>
-                        <button className="keypadButton" onClick={() => this._onClick("5")}>5</button>
-                        <button className="keypadButton" onClick={() => this._onClick("6")}>6</button>
-                    </div>
-                    <div>
-                        <button className="keypadButton" onClick={() => this._onClick("7")}>7</button>
-                        <button className="keypadButton" onClick={() => this._onClick("8")}>8</button>
-                        <button className="keypadButton" onClick={() => this._onClick("9")}>9</button>
-                    </div>
-                    <div>
-                        <button className="keypadButton" onClick={() => this._onClickBackspace()}>◀️</button>
-                        <button className="keypadButton" onClick={() => this._onClick("0")}>0</button>
-                        <button className="keypadButton" onClick={() => this._onClickClear()}>🆑</button>
-                    </div>
-                    <span className="code">
-                        {this.state.code}
-                    </span>
                     {this._renderEnterButton()}
                 </div>
             </div>
