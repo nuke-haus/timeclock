@@ -81,12 +81,10 @@ class ClockBody extends React.Component {
     }
 
     _onCodeChanged(ev) {
-        console.log(ev.currentTarget.value);
         this.setState({code: ev.currentTarget.value});
     }
 
     _onNameChanged(ev) {
-        console.log(ev.currentTarget.value);
         this.setState({name: ev.currentTarget.value});
     }
 
