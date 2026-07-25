@@ -1,7 +1,7 @@
 class DatabaseBody extends React.Component {
 
     state = {
-       user = null
+       user: null
     };
 
     _formatName(value) {
