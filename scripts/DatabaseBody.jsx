@@ -44,7 +44,7 @@ class DatabaseBody extends React.Component {
     _renderUserData() {
         for (const [i, value] of this.state.user.timeSpans.entries()) {
             result.push(
-                <tr key={'user' + i}>
+                <tr key={'userdata' + i}>
                     <td>{value.date}</td>
                     <td>{value.time}</td>
                 </tr>
