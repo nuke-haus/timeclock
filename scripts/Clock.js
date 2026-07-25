@@ -104,9 +104,15 @@ TC.enterCode = function(code) {
             let timeSpan = data.activeTimeSpan;
             let now = new Date();
             let diff = TC.differenceInTime(timeSpan, now);
+            let year = new Date().getFullYear();
+            let month = new Date().getMonth();
+            let day = new Date().getDay();
+            let dateStr = day + "-" + month + "-" + year;
+            
+
             TC.database.people[index].timeSpans.push({
                 time: diff,
-                date: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).toString()
+                date: dateStr
             });
             TC.database.people[index].activeTimeSpan = null;
 
