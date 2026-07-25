@@ -145,7 +145,7 @@ TC.addEffects = function() {
 
     let margin = viewportWidth * 0.2;
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 20; i++) {
         TC.effects.push({
             text: doRand ? TC.rand(emojis) : emote,
             xwobb: 0,
