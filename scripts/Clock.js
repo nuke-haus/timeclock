@@ -62,12 +62,12 @@ TC.areEqual = function(obj1, obj2) {
 
 // Timeclock logic
 
-TC.isCodeLength4 = function(code) {
-    return code.length == 4;
+TC.isCodeLength3 = function(code) {
+    return code.length == 3;
 }
 
 TC.canAddNewUser = function(code) {
-    return TC.getUserData(code) == null && code.length == 4;
+    return TC.getUserData(code) == null && code.length == 3;
 }
 
 TC.getUserData = function(code) {
@@ -132,7 +132,8 @@ TC.differenceInTime = function(dt1, dt2) {
 TC.addEffects = function() {
     let viewportWidth = window.innerWidth;
     let viewportHeight = window.innerHeight;
-    let emojis = ['🎈', '🤡', '🐀', '🍕', '✨', '⭐', '🚀', '🪐', '🤪', '🥸', '⌛', '🌭', '🍎', '🫘', '🍫', '🍗', '🪙', '🪠', '👻', '😼', '🎷', '🎺', '🍁', '🍌', '🧀', '😀', '💩', '🍦', '🍓', '👽', '🗿', '🚗', '⚓', '🫃'];
+    let emojis = ['🎈', '🤡', '🐀', '🍕', '✨', '⭐', '🚀', '🪐', '🤪', '🥸', '⌛', '🌭', '🍎', '😀', '💩', '🍦', '🚗',
+                    '🫘', '🍫', '🍗', '🪙', '🪠', '👻', '😼', '🎷', '🎺', '🍁', '🍌', '🧀', '🍓', '👽', '🗿', '⚓', '🫃'];
     let emote = TC.rand(emojis);
     let doRand = true;
 
