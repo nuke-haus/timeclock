@@ -50,7 +50,7 @@ class DatabaseBody extends React.Component {
         for (const [i, value] of this.state.user.timeSpans.entries()) {
             result.push(
                 <tr key={'userdata' + i}>
-                    <td>{value.date.toDateString()}</td>
+                    <td>{value.date.toString()}</td>
                     <td>{value.time || 'INVALID'}</td>
                 </tr>
             );
