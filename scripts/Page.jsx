@@ -12,13 +12,12 @@ class Page extends React.Component {
 
         const locallyStoredData = localStorage.getItem('timeclock_data');
         if (locallyStoredData == null) {
-            //fetch('data/materials.json')
-            //    .then(response => response.json())
-            //    .then(data => this._onLoadMaterials(data));
+            console.log("No local data found");
         } else {
             // Locally stored persistent data exists, so parse that and validate it instead
             const parsedData = JSON.parse(locallyStoredData);
-            //TC.loadData(parsedData)
+            TC.loadData(parsedData);
+            console.log("Loaded locally stored data")
         }
     }
 

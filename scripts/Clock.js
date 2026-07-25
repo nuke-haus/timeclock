@@ -27,6 +27,10 @@ TC.saveAllData = function() {
     localStorage.setItem("timeclock_data", TC.getAllDataForExport());
 }
 
+TC.loadData = function(data) {
+    TC.database.people = data.people;
+}
+
 TC.isBlankString = function(string) {
     return string == null || string.trim() === "";
 }
