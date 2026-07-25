@@ -17,6 +17,10 @@ class DatabaseBody extends React.Component {
         return String(value).toUpperCase();
     }
 
+    _onClickUser(user) {
+        this.setState({user: user});
+    }
+
     _renderSingleUser() {
         if (this.state.user == null) {
             return null;
