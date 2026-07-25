@@ -5,7 +5,7 @@ class ClockBody extends React.Component {
         isDirty: false,
         key: "123",
         code: "",
-        name: "Stinky",
+        name: "",
         date: "",
         effects: []
     };
@@ -93,6 +93,7 @@ class ClockBody extends React.Component {
     _onClickEnter() {
         TC.enterCode(this.state.code);
         TC.addEffects();
+        TC.saveAllData();
 
         this.setState({code: "", key: TC.guid()});
     }
@@ -100,8 +101,9 @@ class ClockBody extends React.Component {
     _onClickAddUser() {
         TC.addNewUser(this.state.code, this.state.name);
         TC.addEffects();
+        TC.saveAllData();
 
-        this.setState({code: "", key: TC.guid()});
+        this.setState({code: "", name: "", key: TC.guid()});
     }
 
     _renderEmojis() {
@@ -159,8 +161,8 @@ class ClockBody extends React.Component {
                             <div>
                                 <span>{string}</span>
                             </div>
-                            <div>
-                                <input className="keypadName" type="text" defaultValue="Stinky" onInput={(value) => this._onNameChanged(value)}></input>
+                            <div key={this.state.key + "name"}>
+                                <input className="keypadName" type="text" defaultValue={this.state.name} onInput={(value) => this._onNameChanged(value)}></input>
                             </div>
                             <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
                         </div>

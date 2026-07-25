@@ -36,7 +36,7 @@ class DatabaseBody extends React.Component {
                     <tbody>
                         <tr>
                             <th>DATE</th>
-                            <th>TIME LOGGED</th>
+                            <th>HOURS LOGGED</th>
                         </tr>
                         {this._renderUserData()}
                     </tbody>

@@ -11,17 +11,10 @@ TC._jsonOutputLogic = function(key, value) {
 }
 
 TC.getAllDataForExport = function() {
-    const exportData = {formulas: [], mixtures: [], materials: []};
-    for (let id in TC.database.formulas) {
-        const clone = TC.deepCopy(TC.database.formulas[id]);
-        clone.computed = null;
-        exportData.formulas.push(clone);
-    }
-    for (let id in TC.database.materials) {
-        exportData.materials.push(TC.database.materials[id]);
-    }
-    for (let id in TC.database.mixtures) {
-        exportData.mixtures.push(TC.database.mixtures[id]);
+    const exportData = {people: []};
+    for (let id in TC.database.people) {
+        const clone = TC.deepCopy(TC.database.people[id]);
+        exportData.people.push(clone);
     }
     return JSON.stringify(exportData, TC._jsonOutputLogic, "\t");
 }
@@ -30,7 +23,7 @@ TC.deleteLocalStore = function() {
     localStorage.removeItem("timeclock_data");
 }
 
-TC.persistInLocalStore = function() {
+TC.saveAllData = function() {
     localStorage.setItem("timeclock_data", TC.getAllDataForExport());
 }
 
