@@ -182,7 +182,7 @@ class ClockBody extends React.Component {
             <div className="keypadContainerDiv">
                 <div className="keypadDiv">
                     <div>
-                        <input className="keypadName" type="text" defaultValue="Stinky" onInput={(value) => this._onCodeChanged(value)}></input>
+                        <input className="keypadCode" type="text" defaultValue="" onInput={(value) => this._onCodeChanged(value)}></input>
                     </div>
                     {this._renderEnterButton()}
                 </div>

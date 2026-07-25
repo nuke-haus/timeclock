@@ -221,6 +221,11 @@ table, td, th {
     text-align: center;
 }
 
+.keypadCode {
+    font-weight: bold;
+    width: 200px;
+}
+
 .keypadName {
     width: 200px;
 }
