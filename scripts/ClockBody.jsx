@@ -3,6 +3,7 @@ class ClockBody extends React.Component {
 
     state = {
         isDirty: false,
+        key: "123",
         code: "",
         name: "Stinky",
         date: "",
@@ -93,14 +94,14 @@ class ClockBody extends React.Component {
         TC.enterCode(this.state.code);
         TC.addEffects();
 
-        this.setState({code: ""});
+        this.setState({code: "", key: TC.guid()});
     }
 
     _onClickAddUser() {
         TC.addNewUser(this.state.code, this.state.name);
         TC.addEffects();
 
-        this.setState({code: ""});
+        this.setState({code: "", key: TC.guid()});
     }
 
     _renderEmojis() {
@@ -183,7 +184,7 @@ class ClockBody extends React.Component {
     _renderKeypad() {
         return (
             <div className="keypadContainerDiv">
-                <div className="keypadDiv">
+                <div className="keypadDiv" key={this.state.key}>
                     <div>
                         <input className="keypadCode" type="text" defaultValue="" onInput={(value) => this._onCodeChanged(value)}></input>
                     </div>
