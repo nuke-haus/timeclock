@@ -107,7 +107,7 @@ TC.enterCode = function(code) {
             let year = new Date().getFullYear();
             let month = new Date().getMonth();
             let day = new Date().getDate();
-            let dateStr = day + "-" + month + "-" + year;
+            let dateStr = day + "/" + month + "/" + year;
             
             TC.database.people[index].timeSpans.push({
                 time: diff,

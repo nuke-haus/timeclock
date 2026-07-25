@@ -35,7 +35,7 @@ class DatabaseBody extends React.Component {
                 <table className="formulatablesmall">
                     <tbody>
                         <tr>
-                            <th>DATE</th>
+                            <th>DATE (DAY/MONTH/YEAR)</th>
                             <th>HOURS LOGGED</th>
                         </tr>
                         {this._renderUserData()}
