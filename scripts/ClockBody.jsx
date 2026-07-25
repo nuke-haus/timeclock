@@ -193,9 +193,6 @@ class ClockBody extends React.Component {
     render() {
         return (
             <div>
-                <div className="tabletext">
-                    
-                </div>
                 {this._renderClock()}
                 {this._renderKeypad()}
                 {this._renderEmojis()}
