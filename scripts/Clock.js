@@ -154,6 +154,7 @@ TC.addEffects = function() {
             speed: (Math.random() * 4) + 0.5,
             wobble: (Math.random() * 200),
             wobbleSpd: Math.random() * 0.01,
+            wobbleOff: Math.random() * 5000,
             name: new Date().getMilliseconds() + "emoji" + i
         });
     }
