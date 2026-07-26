@@ -2,6 +2,7 @@ class Page extends React.Component {
 
     NAV_CLOCK = "🕒";
     NAV_DATABASE = "🗂️";
+    NAV_CALENDAR = "🗓️";
 
     state = {
         currentNav: "🕒"
@@ -42,6 +43,9 @@ class Page extends React.Component {
                     <div className="topbutton" onClick={() => this._onNavClick(this.NAV_DATABASE)}>
                         <span className={this._getClassName(this.NAV_DATABASE)}>{this.NAV_DATABASE}</span>
                     </div>
+                    <div className="topbutton" onClick={() => this._onNavClick(this.NAV_CALENDAR)}>
+                        <span className={this._getClassName(this.NAV_CALENDAR)}>{this.NAV_CALENDAR}</span>
+                    </div>
                 </div>
             </div>
         );
@@ -55,6 +59,11 @@ class Page extends React.Component {
             return (<div>
                 {header}
                 <DatabaseBody/>
+            </div>);
+        } else if (this.state.currentNav == this.NAV_CALENDAR) { 
+            return (<div>
+                {header}
+                <CalendarBody/>
             </div>);
         } 
 

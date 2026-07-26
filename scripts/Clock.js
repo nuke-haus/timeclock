@@ -122,7 +122,10 @@ TC.enterCode = function(code) {
             
             TC.database.people[index].timeSpans.push({
                 time: diff,
-                date: dateStr
+                date: dateStr,
+                dateDay: day,
+                dateMonth: month,
+                dateYear: year
             });
             TC.database.people[index].activeTimeSpan = null;
 
