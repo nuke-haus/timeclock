@@ -1,4 +1,4 @@
-//import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
 
 class CalendarBody extends React.Component {
 
@@ -22,7 +22,7 @@ class CalendarBody extends React.Component {
         return (
             <div>
                 hi
-                
+                <DatePicker></DatePicker>
             </div>
         );
     }
