@@ -51,20 +51,26 @@ class Page extends React.Component {
         );
 
         if (this.state.currentNav == this.NAV_CLOCK) { 
-            return (<div>
+            return (<StrictMode>
+            <div>
                 {header}
                 <ClockBody/>
-            </div>);
+            </div>
+            </StrictMode>);
         } else if (this.state.currentNav == this.NAV_DATABASE) { 
-            return (<div>
+            return (<StrictMode>
+            <div>
                 {header}
                 <DatabaseBody/>
-            </div>);
+            </div>
+            </StrictMode>);
         } else if (this.state.currentNav == this.NAV_CALENDAR) { 
-            return (<div>
+            return (<StrictMode>
+            <div>
                 {header}
                 <CalendarBody/>
-            </div>);
+            </div>
+            </StrictMode>);
         } 
 
         return null;
