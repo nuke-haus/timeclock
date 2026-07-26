@@ -14,7 +14,7 @@ class CalendarBody extends React.Component {
         console.log(date);
     }
 
-    //<DatePicker selected={new Date()} 
+    //<DatePicker selected = {{selectedDate}} 
     //                        onSelect = {(date) => this._onSelectDate(date)} 
     //                        onChange={(date) => _onChangeDate(date)} />
 
@@ -23,8 +23,7 @@ class CalendarBody extends React.Component {
         return (
             <div>
                 hi
-                <DatePicker selected = {{selectedDate}} 
-                            onSelect = {(date) => this._onSelectDate(date)} 
+                <DatePicker onSelect = {(date) => this._onSelectDate(date)} 
                             onChange = {(date) => _onChangeDate(date)} />
             </div>
         );
