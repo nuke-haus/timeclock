@@ -1,5 +1,4 @@
 TC = {};
-
 TC.database = {};
 TC.database.people = [];
 TC.effects = [];
@@ -29,6 +28,18 @@ TC.saveAllData = function() {
 
 TC.loadData = function(data) {
     TC.database.people = data.people;
+}
+
+TC.outputAllPeopleCSV = function() {
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    rows.forEach(function(rowArray) {
+        let row = rowArray.join(",");
+        csvContent += row + "\r\n";
+    });
+
+    var encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
 }
 
 TC.isBlankString = function(string) {
