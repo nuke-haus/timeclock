@@ -1,3 +1,4 @@
+import React from 'react';
 
 class ClockBody extends React.Component {
 

@@ -1,3 +1,5 @@
+import React from 'react';
+
 class DatabaseBody extends React.Component {
 
     state = {
