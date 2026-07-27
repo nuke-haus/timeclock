@@ -419,6 +419,7 @@ h2.react-datepicker__current-month {
 .react-datepicker__quarter-text--today,
 .react-datepicker__year-text--today {
   font-weight: bold;
+  background-color: #53c0c6;
 }
 .react-datepicker__day--highlighted,
 .react-datepicker__month-text--highlighted,
@@ -496,7 +497,7 @@ h2.react-datepicker__current-month {
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
   border-radius: 0.3rem;
-  background-color: #216ba5;
+  background-color: #53c654;
   color: #fff;
 }
 .react-datepicker__day--selected:not([aria-disabled=true]):hover, .react-datepicker__day--in-selecting-range:not([aria-disabled=true]):hover, .react-datepicker__day--in-range:not([aria-disabled=true]):hover,
