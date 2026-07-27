@@ -77,7 +77,8 @@ button.datePicker {
 
 .keypadCode {
     font-weight: bold;
-    width: 200px;
+    text-align: center;
+    width: 250px;
 }
 
 .keypadName {

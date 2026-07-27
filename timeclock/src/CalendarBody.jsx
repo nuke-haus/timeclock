@@ -19,6 +19,28 @@ class CalendarBody extends React.Component {
         console.log(date);
     }
 
+    _renderDays() {
+
+    }
+
+    _renderTable() {
+        return (
+            <div>
+                <div className="tabletext">
+                    STAT HOLIDAYS
+                </div>
+                <table className="formulatablesmall">
+                    <tbody>
+                        <tr>
+                            <th>DATE (DAY/MONTH/YEAR)</th>
+                        </tr>
+                        {this._renderDays()}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
     render() {
         const date = new Date();
         return (
@@ -26,10 +48,10 @@ class CalendarBody extends React.Component {
                 <div class="datePicker">
                     <DatePicker inline
                                 selected = {new Date()} 
-                                onChange = {(date) => _onChangeDate(date)}/>
+                                onChange = {(date) => this._onChangeDate(date)}/>
                 </div>
                 <div>
-                    hello
+                    {this._renderTable()}
                 </div>
             </div>
             
