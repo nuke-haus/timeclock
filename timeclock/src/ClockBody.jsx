@@ -78,10 +78,6 @@ class ClockBody extends React.Component {
         return String(value).toUpperCase();
     }
 
-    _hasValidCode() {
-        return TC.isCodeValid(this.state.code);
-    }
-
     _onCodeChanged(ev) {
         this.setState({code: ev.currentTarget.value});
     }

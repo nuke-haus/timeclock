@@ -71,7 +71,8 @@ TC.areEqual = function(obj1, obj2) {
 // Timeclock logic
 
 TC.isCodeLength3 = function(code) {
-    return code.length == 3;
+    let numeric = /^\d+$/.test(code);
+    return code.length == 3 && numeric;
 }
 
 TC.canAddNewUser = function(code) {
