@@ -115,7 +115,7 @@ TC.enterCode = function(code) {
         if (TC.isUserClockedIn(code)) {
             let timeSpan = new Date();
             timeSpan.setTime(data.activeTimeSpan);
-            
+
             let now = new Date();
             let diff = TC.differenceInTime(timeSpan, now);
             let year = new Date().getFullYear();
@@ -134,7 +134,7 @@ TC.enterCode = function(code) {
 
             console.log("Clocked out " + data.name + " - " + diff);
         } else {
-            TC.database.people[index].activeTimeSpan = new Date().getUTCMilliseconds();
+            TC.database.people[index].activeTimeSpan = new Date().getTime();
 
             console.log("Clocked in " + data.name);
         }
