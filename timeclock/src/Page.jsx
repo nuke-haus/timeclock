@@ -1,3 +1,7 @@
+import ClockBody from './ClockBody.jsx'
+import DatabaseBody from './DatabaseBody.jsx'
+import CalendarBody from './CalendarBody.jsx'
+
 class Page extends React.Component {
 
     NAV_CLOCK = "🕒";
