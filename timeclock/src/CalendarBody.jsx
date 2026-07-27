@@ -23,11 +23,17 @@ class CalendarBody extends React.Component {
         const date = new Date();
         return (
             <div>
-                hi
-                <DatePicker inline
-                            selected = {new Date()} 
-                            onChange = {(date) => _onChangeDate(date)}/>
+                <div>
+                    <DatePicker class="datePicker"
+                                inline
+                                selected = {new Date()} 
+                                onChange = {(date) => _onChangeDate(date)}/>
+                </div>
+                <div>
+                    hello
+                </div>
             </div>
+            
         );
     }
 }
