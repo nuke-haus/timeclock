@@ -25,8 +25,8 @@ class CalendarBody extends React.Component {
             <div>
                 hi
                 <DatePicker selected = {date}
-                            onSelect = {_onSelectDate}
-                            onChange = {_onChangeDate} />
+                            onSelect = {(date) => _onSelectDate(date)}
+                            onChange = {(date) => _onChangeDate(date)} />
             </div>
         );
     }
