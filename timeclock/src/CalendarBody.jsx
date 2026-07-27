@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from "react";
 import TC from './Clock.js'
 
 import DatePicker from "react-datepicker";
@@ -19,13 +20,13 @@ class CalendarBody extends React.Component {
     }
 
     render() {
-        let selectedDate = new Date();
+        const [startDate, setStartDate] = useState(new Date());
         return (
             <div>
                 hi
-                <DatePicker selected = {selectedDate}
-                            onSelect = {(date) => this._onSelectDate(date)} 
-                            onChange = {(date) => _onChangeDate(date)} />
+                <DatePicker selected = {startDate}
+                            onSelect = {_onSelectDate}
+                            onChange = {_onChangeDate} />
             </div>
         );
     }
