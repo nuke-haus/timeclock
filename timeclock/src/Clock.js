@@ -1,4 +1,4 @@
-TC = {};
+const TC = {};
 TC.database = {};
 TC.database.people = [];
 TC.effects = [];
@@ -182,3 +182,5 @@ TC.addEffects = function() {
 TC.rand = function(items) {
     return items[items.length * Math.random() | 0];
 }
+
+export default TC

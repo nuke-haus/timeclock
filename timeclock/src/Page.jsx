@@ -2,6 +2,7 @@ import React from 'react';
 import ClockBody from './ClockBody.jsx'
 import DatabaseBody from './DatabaseBody.jsx'
 import CalendarBody from './CalendarBody.jsx'
+import TC from './Clock.js'
 
 class Page extends React.Component {
 

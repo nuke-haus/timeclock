@@ -1,4 +1,5 @@
 import React from 'react';
+import TC from './Clock.js';
 
 class DatabaseBody extends React.Component {
 
