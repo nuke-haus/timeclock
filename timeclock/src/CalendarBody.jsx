@@ -29,3 +29,5 @@ class CalendarBody extends React.Component {
         );
     }
 }
+
+export default CalendarBody

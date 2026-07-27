@@ -80,3 +80,5 @@ class Page extends React.Component {
         return null;
     }
 }
+
+export default Page

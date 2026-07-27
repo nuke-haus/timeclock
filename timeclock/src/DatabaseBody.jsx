@@ -105,3 +105,5 @@ class DatabaseBody extends React.Component {
         );
     }
 }
+
+export default DatabaseBody

@@ -204,3 +204,5 @@ class ClockBody extends React.Component {
         );
     }
 }
+
+export default ClockBody
