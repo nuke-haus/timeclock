@@ -192,7 +192,9 @@ class ClockBody extends React.Component {
                             type="text" 
                             maxlength="3" 
                             pattern="[0-9][0-9][0-9]" 
+                            required
                             defaultValue="" 
+                            placeholder="000"
                             onInput={(value) => this._onCodeChanged(value)}/>
                     </div>
                     {this._renderEnterButton()}
