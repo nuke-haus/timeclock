@@ -10,7 +10,7 @@ class ClockBody extends React.Component {
         code: "",
         name: "",
         pass: "",
-        date: "",
+        date: "---",
         effects: []
     };
 
