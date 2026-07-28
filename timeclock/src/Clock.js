@@ -1,6 +1,7 @@
 const TC = {};
 TC.database = {};
 TC.database.people = [];
+TC.database.holidays = [];
 TC.effects = [];
 
 TC._jsonOutputLogic = function(key, value) {
@@ -69,6 +70,18 @@ TC.areEqual = function(obj1, obj2) {
 }
 
 // Timeclock logic
+
+TC.hasHoliday = function(date) {
+    return TC.database.holidays.find(x => x === date) != undefined;
+}
+
+TC.addHoliday = function(date) {
+    TC.database.holidays.push(date);
+}
+
+TC.removeHoliday = function(date) {
+    TC.database.holidays = TC.database.holidays.filter(x => x !== date);
+}
 
 TC.isCodeLength3 = function(code) {
     let numeric = /^\d+$/.test(code);

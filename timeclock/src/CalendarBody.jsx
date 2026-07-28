@@ -17,6 +17,17 @@ class CalendarBody extends React.Component {
 
     _onChangeDate(date) {
         console.log(date);
+
+        let year = new Date().getFullYear();
+        let month = new Date().getMonth();
+        let day = new Date().getDate();
+        let str = `${year}-${month}-${day}`;
+
+        if (TC.hasHoliday(str)) {
+            TC.removeHoliday(str);
+        } else {
+            TC.addHoliday(str);
+        }
     }
 
     _renderDays() {
@@ -43,12 +54,17 @@ class CalendarBody extends React.Component {
 
     render() {
         const date = new Date();
+        let holidays = TC.database.holidays.map(date => {date: date; holidayName: "Holiday"})
         return (
             <div>
+                <div>
+                    Click on days in the calendar to add them as stat holidays in the table
+                </div>
                 <div class="datePicker">
                     <DatePicker inline
-                                selected = {new Date()} 
-                                onChange = {(date) => this._onChangeDate(date)}/>
+                                holidays={holidays}
+                                selected={new Date()} 
+                                onChange={(date) => this._onChangeDate(date)}/>
                 </div>
                 <div>
                     {this._renderTable()}

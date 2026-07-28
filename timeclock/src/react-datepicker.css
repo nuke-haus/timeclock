@@ -453,7 +453,7 @@ h2.react-datepicker__current-month {
 .react-datepicker__year-text--holidays {
   position: relative;
   border-radius: 0.3rem;
-  background-color: #ff6803;
+  background-color: #f78f4a;
   color: #fff;
 }
 .react-datepicker__day--holidays .overlay,

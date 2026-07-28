@@ -68,7 +68,7 @@ class DatabaseBody extends React.Component {
                 <tr key={'user' + i}>
                     <td><button onClick={() => this._onClickUser(value)} className="databaseButton">{value.name}</button></td>
                     <td>{value.code}</td>
-                    <td>{value.activeTimeSpan != null ? "CLOCKED IN" : "---"}</td>
+                    <td>{value.activeTimeSpan != null ? "✅ CLOCKED IN" : "❎ NOT IN"}</td>
                 </tr>
             );
         }
