@@ -12,7 +12,7 @@ class CalendarBody extends React.Component {
     };
 
     _onChangeDate(date) {
-        console.log(date);
+        //console.log(date);
 
         let str = TC.getCalendarFormatDate(date);
 
@@ -66,7 +66,6 @@ class CalendarBody extends React.Component {
                 holidayName: "Holiday " + value
             });
         }
-        console.log(hds)
 
         return (
             <div>
