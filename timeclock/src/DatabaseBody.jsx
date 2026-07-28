@@ -1,10 +1,16 @@
 import React from 'react';
 import TC from './Clock.js';
+import DatePicker from "react-datepicker";
+
+import "./react-datepicker.css";
 
 class DatabaseBody extends React.Component {
 
     state = {
-       user: null
+       user: null,
+       key: "db",
+       startDate: new Date(),
+       endDate: new Date()
     };
 
     _formatName(value) {
@@ -21,7 +27,33 @@ class DatabaseBody extends React.Component {
     }
 
     _onClickUser(user) {
-        this.setState({user: user});
+        this.setState({user: user, key: TC.guid()});
+    }
+
+    _onLoseFocus() {
+        this.setState({key: TC.guid()});
+    }
+
+    _setStartDate(date) {
+        console.log(date)
+        this.setState({key: TC.guid(), startDate: date});
+    }
+
+    _setEndDate(date) {
+        this.setState({key: TC.guid(), endDate: date});
+    }
+
+    _onTimeChanged(i, e) {
+        let idx = TC.getUserIndex(this.state.user.code);
+        TC.database.people[idx].timeSpans[i].time = e.target.value;
+    }
+
+    _onDelete(i) {
+        let idx = TC.getUserIndex(this.state.user.code);
+        TC.database.people[idx].timeSpans[i] = null;
+        TC.database.people[idx].timeSpans = TC.database.people[idx].timeSpans.filter((x) => x != null);
+
+        this.setState({user: TC.database.people[idx], key: TC.guid()});
     }
 
     _renderSingleUser() {
@@ -31,9 +63,29 @@ class DatabaseBody extends React.Component {
 
         let str = this.state.user.name;
         return (
-            <div>
+            <div key={this.state.key}>
                 <div className="tabletext">
                     {str}
+                </div>
+                <div>
+                    <span>
+                        Select date range
+                    </span>
+                     <DatePicker
+                        selected={this.state.startDate}
+                        onChange={(date) => this._setStartDate(date)}
+                        selectsStart
+                        startDate={this.state.startDate}
+                        endDate={this.state.endDate}
+                    />
+                    <DatePicker
+                        selected={this.state.endDate}
+                        onChange={(date) => this._setEndDate(date)}
+                        selectsEnd
+                        startDate={this.state.startDate}
+                        endDate={this.state.endDate}
+                        minDate={this.state.startDate}
+                    />
                 </div>
                 <table className="formulatablesmall">
                     <tbody>
@@ -53,17 +105,29 @@ class DatabaseBody extends React.Component {
         for (const [i, value] of this.state.user.timeSpans.entries()) {
             if (Math.floor(Number(value.time)) < 9) {
                 result.push(
-                    <tr key={'userdata' + i}>
-                        <td>{value.date.toString()}</td>
-                        <td>{value.time || 'INVALID'}</td>
+                    <tr key={'userdata' + i + this.state.key}>
+                        <td>{value.date.toString()} <span className="topbutton" onClick={() => this._onDelete(i)}>❌</span></td>
+                        <td><input className="" 
+                                    type="text" 
+                                    defaultValue={value.time} 
+                                    onblur={() => this._onLoseFocus()} 
+                                    onInput={(value) => this._onTimeChanged(i, value)}>
+                            </input>
+                        </td>
                     </tr>
                 );
             }
             else {
                 result.push(
-                    <tr key={'userdata' + i}>
-                        <td>{value.date.toString()}</td>
-                        <td className="overtime">{value.time || 'INVALID'}</td>
+                    <tr key={'userdataot' + i + this.state.key}>
+                        <td>{value.date.toString()} <span className="topbutton" onClick={() => this._onDelete(i)}>❌</span></td>
+                        <td><input className="overtime" 
+                                    type="text" 
+                                    defaultValue={value.time} 
+                                    onblur={() => this._onLoseFocus()} 
+                                    onInput={(value) => this._onTimeChanged(i, value)}>
+                            </input>
+                        </td>
                     </tr>
                 );
             }
