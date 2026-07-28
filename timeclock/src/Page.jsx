@@ -55,6 +55,9 @@ class Page extends React.Component {
                     <div className="topbutton" onClick={() => this._onNavClick(this.NAV_CALENDAR)}>
                         <span className={this._getClassName(this.NAV_CALENDAR)}>{this.NAV_CALENDAR}</span>
                     </div>
+                    <div className="topbutton" onClick={() => this._onNavClick(this.NAV_REPORTS)}>
+                        <span className={this._getClassName(this.NAV_REPORTS)}>{this.NAV_REPORTS}</span>
+                    </div>
                 </div>
             </div>
         );
