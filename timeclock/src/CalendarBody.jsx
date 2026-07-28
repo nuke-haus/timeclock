@@ -20,6 +20,9 @@ class CalendarBody extends React.Component {
         if (month < 10) {
             month = '0' + month;
         }
+        if (day < 10) {
+            day = '0' + day;
+        }
         let str = `${year}-${month}-${day}`;
 
         if (TC.hasHoliday(str)) {
@@ -29,15 +32,6 @@ class CalendarBody extends React.Component {
         }
 
         TC.saveAllData();
-
-        let hds = [];
-        for (let value of TC.database.holidays) {
-            hds.push({
-                date: value,
-                holidayName: "Holiday"
-            });
-        }
-        console.log(hds);
     }
 
     _renderDays() {
@@ -68,7 +62,7 @@ class CalendarBody extends React.Component {
         for (let value of TC.database.holidays) {
             hds.push({
                 date: value,
-                holidayName: "Holiday!"
+                holidayName: "Holiday " + value
             });
         }
 
