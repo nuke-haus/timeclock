@@ -27,7 +27,10 @@ class DatabaseBody extends React.Component {
     }
 
     _onClickUser(user) {
-        this.setState({user: user, key: TC.guid()});
+        let date = new Date();
+        let yesterday = new Date();
+        yesterday.setDate(date.getDate() - 1);
+        this.setState({user: user, key: TC.guid(), startDate: yesterday, endDate: date});
     }
 
     _onLoseFocus() {
@@ -35,7 +38,6 @@ class DatabaseBody extends React.Component {
     }
 
     _setStartDate(date) {
-        console.log(date)
         this.setState({key: TC.guid(), startDate: date});
     }
 
