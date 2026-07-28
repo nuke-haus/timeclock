@@ -61,33 +61,39 @@ class DatabaseBody extends React.Component {
             return null;
         }
 
-        let str = this.state.user.name;
+        let str = `Viewing entries for ${this.state.user.name} in date range`;
         return (
             <div key={this.state.key}>
                 <div className="tabletext">
-                    {str}
-                </div>
-                <div>
-                    <span>
-                        Select date range
-                    </span>
-                     <DatePicker
-                        selected={this.state.startDate}
-                        onChange={(date) => this._setStartDate(date)}
-                        selectsStart
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                    />
-                    <DatePicker
-                        selected={this.state.endDate}
-                        onChange={(date) => this._setEndDate(date)}
-                        selectsEnd
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                        minDate={this.state.startDate}
-                    />
+                    {""}
                 </div>
                 <table className="formulatablesmall">
+                    <thead>
+                        <tr>
+                            <td colspan="2">{str}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={(date) => this._setStartDate(date)}
+                                    selectsStart
+                                    startDate={this.state.startDate}
+                                    endDate={this.state.endDate}
+                                />
+                            </td>
+                            <td>
+                                <DatePicker
+                                    selected={this.state.endDate}
+                                    onChange={(date) => this._setEndDate(date)}
+                                    selectsEnd
+                                    startDate={this.state.startDate}
+                                    endDate={this.state.endDate}
+                                    minDate={this.state.startDate}
+                                />
+                            </td>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <th>DATE (DAY/MONTH/YEAR)</th>
@@ -101,8 +107,9 @@ class DatabaseBody extends React.Component {
     }
 
     _renderUserData() {
+        let validSpans = this.state.user.timeSpans.filter((x) => TC.isDateInRange(x.timestamp, this.state.startDate, this.state.endDate))
         let result = [];
-        for (const [i, value] of this.state.user.timeSpans.entries()) {
+        for (const [i, value] of validSpans.entries()) {
             if (Math.floor(Number(value.time)) < 9) {
                 result.push(
                     <tr key={'userdata' + i + this.state.key}>

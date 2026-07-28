@@ -170,6 +170,7 @@ TC.enterCode = function(code) {
             
             TC.database.people[index].timeSpans.push({
                 time: diff,
+                timestamp: now.getTime(),
                 date: dateStr,
                 dateDay: day,
                 dateMonth: month,
@@ -185,6 +186,12 @@ TC.enterCode = function(code) {
             console.log("Clocked in " + data.name);
         }
     }
+}
+
+TC.isDateInRange = function(timestamp, start, end) {
+    let date = new Date();
+    date.setTime(timestamp);
+    return date >= start && date <= end;
 }
 
 TC.differenceInTime = function(dt1, dt2) {
