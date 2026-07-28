@@ -5,6 +5,7 @@ class PassBody extends React.Component {
 
     state = {
         pass: "",
+        login: false
     };
 
     componentDidMount() {
@@ -16,7 +17,16 @@ class PassBody extends React.Component {
     }
 
     _onDone() {
-        this.setState({pass: ""});
+        this.setState({pass: "", login: false});
+    }
+
+    _onLogin(log) {
+        if (TC.isPassValid(this.state.pass)) {
+            this.setState({login: true});
+        }
+        else {
+            this.setState({login: false});
+        }
     }
 
     _onPassChanged(ev) {
@@ -24,11 +34,11 @@ class PassBody extends React.Component {
     }
 
     _renderPass() {
-        if (TC.isPassValid(this.state.pass)) {
+        if (TC.isPassValid(this.state.pass) && this.state.login) {
             return (
                 <div>
                     <div>
-                        <button onClick={() => this._onDone()}>🔑 Log Out Admin</button>
+                        <button onClick={() => this._onDone()}>🔐 Log Out Admin</button>
                     </div>
                     <div>
                         {this.props.innerHtml}
@@ -36,7 +46,12 @@ class PassBody extends React.Component {
                 </div>
             )
         } else {
-             return <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+             return (
+                <div>
+                    <button onClick={() => this._onLogin()}>🔑 Log In</button>
+                    <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+                </div>
+             );
         }
     }
 

@@ -48,7 +48,7 @@ class CalendarBody extends React.Component {
                 <table className="formulatablesmall">
                     <tbody>
                         <tr>
-                            <th>DATE (DAY/MONTH/YEAR)</th>
+                            <th>DATE (YEAR/MONTH/DAY)</th>
                         </tr>
                         {this._renderDays()}
                     </tbody>
