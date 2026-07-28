@@ -33,6 +33,7 @@ TC.saveAllData = function() {
 
 TC.loadData = function(data) {
     TC.database.people = data.people;
+    TC.database.holidays = data.holidays;
 }
 
 TC.outputAllPeopleCSV = function() {
@@ -81,6 +82,7 @@ TC.hasHoliday = function(date) {
 
 TC.addHoliday = function(date) {
     TC.database.holidays.push(date);
+    TC.database.holidays.sort();
 }
 
 TC.removeHoliday = function(date) {

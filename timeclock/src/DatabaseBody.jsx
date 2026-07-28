@@ -100,7 +100,7 @@ class DatabaseBody extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="centerContent">
                 {this._renderUserList()}
                 <br/>
                 {this._renderSingleUser()}

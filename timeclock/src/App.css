@@ -7,12 +7,6 @@
     margin: 4px;
 }
 
-button.datePicker {
-  margin: 0px;
-  padding: 0px;
-  box-shadow: none;
-}
-
 .modal {
     position: absolute;
     width: 1000px;
@@ -100,4 +94,15 @@ button.datePicker {
     text-align: center;
     width: 100px;
     font-size: 24px;
+}
+
+.infoText {
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+}
+
+.centerContent {
+    display: flex;
+    justify-content: center;
 }

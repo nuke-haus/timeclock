@@ -80,7 +80,7 @@ class ClockBody extends React.Component {
     }
 
     _onCodeChanged(ev) {
-        this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 5)});
+        this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 6)});
     }
 
     _onNameChanged(ev) {
@@ -135,11 +135,12 @@ class ClockBody extends React.Component {
 
                 let greets = [
                     `Hello, ${data.name}`,
+                    `Hey hey, it's ${data.name}`,
                     `It's everybody's favorite ${data.name}`,
                     `Wow! It's ${data.name}!`,
                     `Put your hands together for ${data.name}`,
-                    `${data.name}? more like Schm${data.name.toLowerCase()}`,
-                    `${data.name} is ready to party`
+                    `${data.name} is ready to party`,
+                    `${data.name}? more like Schm${data.name.toLowerCase()}`
                 ];
 
                 let string = greets[this.state.greet];

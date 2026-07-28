@@ -8,14 +8,14 @@ import "./react-datepicker.css";
 class CalendarBody extends React.Component {
 
     state = {
-      
+      key:"datepicker"
     };
 
     _onChangeDate(date) {
         console.log(date);
 
         let year = date.getFullYear();
-        let month = date.getMonth();
+        let month = date.getMonth() + 1;
         let day = date.getDate();
         if (month < 10) {
             month = '0' + month;
@@ -32,10 +32,20 @@ class CalendarBody extends React.Component {
         }
 
         TC.saveAllData();
+
+        this.setState({key: TC.guid()});
     }
 
     _renderDays() {
-
+        let hds = [];
+        for (let value of TC.database.holidays) {
+            hds.push(
+                <tr>
+                    <td>{value}</td>
+                </tr>
+            );
+        }
+        return hds;
     }
 
     _renderTable() {
@@ -65,19 +75,20 @@ class CalendarBody extends React.Component {
                 holidayName: "Holiday " + value
             });
         }
+        console.log(hds)
 
         return (
             <div>
-                <div>
-                    Click on days in the calendar to add them as stat holidays in the table
+                <div className="infoText">
+                    Click on days in the calendar to add or remove them from the stat holidays table
                 </div>
-                <div class="datePicker">
+                <div class="centerContent" key={this.state.key}>
                     <DatePicker inline
                                 holidays={hds}
                                 selected={date} 
                                 onChange={(date) => this._onChangeDate(date)}/>
                 </div>
-                <div>
+                <div class="centerContent">
                     {this._renderTable()}
                 </div>
             </div>
