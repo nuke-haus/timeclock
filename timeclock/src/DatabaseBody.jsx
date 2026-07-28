@@ -50,7 +50,7 @@ class DatabaseBody extends React.Component {
 
     _renderUserData() {
         let result = [];
-        for (let value of this.state.user.timeSpans.entries()) {
+        for (const [i, value] of this.state.user.timeSpans.entries()) {
             if (value.time > 9) {
                 result.push(
                     <tr key={'userdata' + i}>
