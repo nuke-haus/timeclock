@@ -92,7 +92,6 @@
 
 .databaseButton {
     text-align: center;
-    width: 100px;
     font-size: 24px;
 }
 
@@ -105,4 +104,8 @@
 .centerContent {
     display: flex;
     justify-content: center;
+}
+
+.overtime {
+    color: #99008f;
 }

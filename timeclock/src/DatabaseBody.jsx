@@ -50,13 +50,23 @@ class DatabaseBody extends React.Component {
 
     _renderUserData() {
         let result = [];
-        for (const [i, value] of this.state.user.timeSpans.entries()) {
-            result.push(
-                <tr key={'userdata' + i}>
-                    <td>{value.date.toString()}</td>
-                    <td>{value.time || 'INVALID'}</td>
-                </tr>
-            );
+        for (let value of this.state.user.timeSpans.entries()) {
+            if (value.time > 9) {
+                result.push(
+                    <tr key={'userdata' + i}>
+                        <td>{value.date.toString()}</td>
+                        <td>{value.time || 'INVALID'}</td>
+                    </tr>
+                );
+            }
+            else {
+                result.push(
+                    <tr key={'userdata' + i}>
+                        <td>{value.date.toString()}</td>
+                        <td className="overtime">{value.time || 'INVALID'}</td>
+                    </tr>
+                );
+            }
         }
         return result;
     }
