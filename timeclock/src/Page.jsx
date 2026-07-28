@@ -2,14 +2,16 @@ import React from 'react';
 import ClockBody from './ClockBody.jsx'
 import DatabaseBody from './DatabaseBody.jsx'
 import CalendarBody from './CalendarBody.jsx'
+import ReportsBody from './ReportsBody.jsx'
 import PassBody from './PassBody.jsx'
 import TC from './Clock.js'
 
 class Page extends React.Component {
 
     NAV_CLOCK = "🕒";
-    NAV_DATABASE = "🗂️";
+    NAV_DATABASE = "📇";
     NAV_CALENDAR = "🗓️";
+    NAV_REPORTS = "📃";
 
     state = {
         currentNav: "🕒"
@@ -78,7 +80,14 @@ class Page extends React.Component {
                 <PassBody innerHtml={<CalendarBody/>}/>
             </div>
             );
-        } 
+        } else if (this.state.currentNav == this.NAV_REPORTS) {
+            return (
+            <div>
+                {header}
+                <PassBody innerHtml={<ReportsBody/>}/>
+            </div>
+            );
+        }
 
         return null;
     }
