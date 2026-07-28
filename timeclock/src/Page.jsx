@@ -2,6 +2,7 @@ import React from 'react';
 import ClockBody from './ClockBody.jsx'
 import DatabaseBody from './DatabaseBody.jsx'
 import CalendarBody from './CalendarBody.jsx'
+import PassBody from './PassBody.jsx'
 import TC from './Clock.js'
 
 class Page extends React.Component {
@@ -67,14 +68,14 @@ class Page extends React.Component {
             return (
             <div>
                 {header}
-                <DatabaseBody/>
+                <PassBody innerHtml={<DatabaseBody/>}/>
             </div>
             );
         } else if (this.state.currentNav == this.NAV_CALENDAR) { 
             return (
             <div>
                 {header}
-                <CalendarBody/>
+                <PassBody innerHtml={<CalendarBody/>}/>
             </div>
             );
         } 

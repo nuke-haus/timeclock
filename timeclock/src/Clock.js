@@ -139,6 +139,11 @@ TC.addNewUser = function(code, name, pass) {
     console.log("Added new user '" + user.name + "' with code " + user.code);
 }
 
+TC.isPassValid = function(pass) {
+    let user = TC.database.people[0];
+    return user.admin && user.pass == pass;
+}
+
 TC.isUserClockedIn = function(code) {
     let data = TC.getUserData(code);
     if (data != null) {
