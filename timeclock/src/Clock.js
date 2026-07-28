@@ -11,10 +11,14 @@ TC._jsonOutputLogic = function(key, value) {
 }
 
 TC.getAllDataForExport = function() {
-    const exportData = {people: []};
+    const exportData = {people: [], holidays: []};
     for (let id in TC.database.people) {
         const clone = TC.deepCopy(TC.database.people[id]);
         exportData.people.push(clone);
+    }
+    for (let id in TC.database.holidays) {
+        const clone = TC.deepCopy(TC.database.holidays[id]);
+        exportData.holidays.push(clone);
     }
     return JSON.stringify(exportData, TC._jsonOutputLogic, "\t");
 }

@@ -11,16 +11,12 @@ class CalendarBody extends React.Component {
       
     };
 
-    _onSelectDate(date) {
-        console.log(date);
-    }
-
     _onChangeDate(date) {
         console.log(date);
 
-        let year = new Date().getFullYear();
-        let month = new Date().getMonth();
-        let day = new Date().getDate();
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
         let str = `${year}-${month}-${day}`;
 
         if (TC.hasHoliday(str)) {
@@ -28,6 +24,8 @@ class CalendarBody extends React.Component {
         } else {
             TC.addHoliday(str);
         }
+
+        TC.saveAllData();
     }
 
     _renderDays() {
@@ -54,7 +52,14 @@ class CalendarBody extends React.Component {
 
     render() {
         const date = new Date();
-        let holidays = TC.database.holidays.map(date => {date: date; holidayName: "Holiday"})
+        let hds = [];
+        for (const [i, value] of holidays) {
+            hds.push({
+                date: value,
+                holidayName: "Holiday"
+            });
+        }
+
         return (
             <div>
                 <div>
@@ -62,8 +67,8 @@ class CalendarBody extends React.Component {
                 </div>
                 <div class="datePicker">
                     <DatePicker inline
-                                holidays={holidays}
-                                selected={new Date()} 
+                                holidays={hds}
+                                selected={date} 
                                 onChange={(date) => this._onChangeDate(date)}/>
                 </div>
                 <div>
