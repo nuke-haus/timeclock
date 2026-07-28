@@ -9,6 +9,7 @@ class ClockBody extends React.Component {
         greet: 0,
         code: "",
         name: "",
+        pass: "",
         date: "",
         effects: []
     };
@@ -83,6 +84,10 @@ class ClockBody extends React.Component {
         this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 6)});
     }
 
+    _onPassChanged(ev) {
+        this.setState({pass: ev.currentTarget.value});
+    }
+
     _onNameChanged(ev) {
         this.setState({name: ev.currentTarget.value});
     }
@@ -96,11 +101,11 @@ class ClockBody extends React.Component {
     }
 
     _onClickAddUser() {
-        TC.addNewUser(this.state.code, this.state.name);
+        TC.addNewUser(this.state.code, this.state.name, this.state.pass);
         TC.addEffects();
         TC.saveAllData();
 
-        this.setState({code: "", name: "", key: TC.guid()});
+        this.setState({code: "", pass:"", name: "", key: TC.guid()});
     }
 
     _renderEmojis() {
@@ -163,6 +168,13 @@ class ClockBody extends React.Component {
                 if (TC.canAddNewUser(this.state.code)) {
                     let string = "Hello, please enter a name to create a new user...";
                     let buttonString = "Create User";
+                    let pwd = <div></div>
+
+                    if (TC.database.people.length == 0) {
+                        pwd = <div key={this.state.key + "pwd"}>
+                            <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+                        </div>
+                    }
 
                     return (
                         <div>
@@ -172,6 +184,7 @@ class ClockBody extends React.Component {
                             <div key={this.state.key + "name"}>
                                 <input className="keypadName" type="text" defaultValue={this.state.name} onInput={(value) => this._onNameChanged(value)}></input>
                             </div>
+                            {pwd}
                             <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
                         </div>
                     );

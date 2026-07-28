@@ -76,6 +76,20 @@ TC.areEqual = function(obj1, obj2) {
 
 // Timeclock logic
 
+TC.getCalendarFormatDate = function(date) {
+    // datepicker has a stupid format for dates it uses
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (month < 10) {
+        month = '0' + month;
+    }
+    if (day < 10) {
+        day = '0' + day;
+    }
+    return `${year}-${month}-${day}`;
+}
+
 TC.hasHoliday = function(date) {
     return TC.database.holidays.find(x => x === date) != undefined;
 }
@@ -106,10 +120,16 @@ TC.getUserIndex = function(code) {
     return TC.database.people.findIndex(x => x.code == code);
 }
 
-TC.addNewUser = function(code, name) {
+TC.addNewUser = function(code, name, pass) {
+    let admin = false;
+    if (TC.database.people.length == 0) {
+        admin = true;
+    }
     let user = {
         code: code,
         name: name,
+        pass: pass,
+        admin: admin,
         timeSpans: [],
         activeTimeSpan: null
     };
@@ -141,13 +161,15 @@ TC.enterCode = function(code) {
             let month = new Date().getMonth();
             let day = new Date().getDate();
             let dateStr = day + "/" + month + "/" + year;
+            let calendarStr = TC.getCalendarFormatDate(now);
             
             TC.database.people[index].timeSpans.push({
                 time: diff,
                 date: dateStr,
                 dateDay: day,
                 dateMonth: month,
-                dateYear: year
+                dateYear: year,
+                calendarDate: calendarStr
             });
             TC.database.people[index].activeTimeSpan = null;
 
