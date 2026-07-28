@@ -49,4 +49,4 @@ class PassBody extends React.Component {
     }
 }
 
-export default ClockBody
+export default PassBody
