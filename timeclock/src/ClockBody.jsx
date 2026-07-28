@@ -6,6 +6,7 @@ class ClockBody extends React.Component {
     state = {
         isDirty: false,
         key: "123",
+        greet: 0,
         code: "",
         name: "",
         date: "",
@@ -79,7 +80,7 @@ class ClockBody extends React.Component {
     }
 
     _onCodeChanged(ev) {
-        this.setState({code: ev.currentTarget.value});
+        this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 5)});
     }
 
     _onNameChanged(ev) {
@@ -131,7 +132,17 @@ class ClockBody extends React.Component {
         if (TC.isCodeLength3(this.state.code)) {
             let data = TC.getUserData(this.state.code);
             if (data != null) {
-                let string = "Hello, " + data.name;
+
+                let greets = [
+                    `Hello, ${data.name}`,
+                    `It's everybody's favorite ${data.name}`,
+                    `Wow! It's ${data.name}!`,
+                    `Put your hands together for ${data.name}`,
+                    `${data.name}? more like Schm${data.name.toLowerCase()}`,
+                    `${data.name} is ready to party`
+                ];
+
+                let string = greets[this.state.greet];
                 let buttonString = "Clock In";
 
                 if (TC.isUserClockedIn(this.state.code)) {
