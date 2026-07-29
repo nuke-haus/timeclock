@@ -7,6 +7,8 @@ import "./react-datepicker.css";
 class DatabaseBody extends React.Component {
 
     state = {
+       name: "",
+       code: "",
        user: null,
        key: "db",
        startDate: new Date(),
@@ -26,10 +28,27 @@ class DatabaseBody extends React.Component {
         return String(value).toUpperCase();
     }
 
+    _onClickDeleteUser(code) {
+        TC.removeUser(code);
+
+        this.setState({key: TC.guid()});
+    }
+
+    _onClickNewUser() {
+        if (this.state.name == "" || this.state.code.length != 3) {
+            return;
+        }
+
+        TC.addNewUser(this.state.code, this.state.name, "");
+
+        this.setState({key: TC.guid(), name: "", code: ""});
+    }
+
     _onClickUser(user) {
         let date = new Date();
         let yesterday = new Date();
         yesterday.setDate(date.getDate() - 1);
+
         this.setState({user: user, key: TC.guid(), startDate: yesterday, endDate: date});
     }
 
@@ -48,6 +67,14 @@ class DatabaseBody extends React.Component {
     _onTimeChanged(i, e) {
         let idx = TC.getUserIndex(this.state.user.code);
         TC.database.people[idx].timeSpans[i].time = e.target.value;
+    }
+
+    _onCodeChanged(ev) {
+        this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 6)});
+    }
+
+    _onNameChanged(ev) {
+        this.setState({name: ev.currentTarget.value});
     }
 
     _onDelete(i) {
@@ -152,6 +179,7 @@ class DatabaseBody extends React.Component {
                     <td><button onClick={() => this._onClickUser(value)} className="databaseButton">{value.name}</button></td>
                     <td>{value.code}</td>
                     <td>{value.activeTimeSpan != null ? "✅ CLOCKED IN" : "❎ NOT IN"}</td>
+                    <td><button onClick={() => this._onClickDeleteUser(value.code)} className="databaseButton">☢️ Delete User</button></td>
                 </tr>
             );
         }
@@ -168,11 +196,17 @@ class DatabaseBody extends React.Component {
                     USERS TABLE
                 </div>
                 <table className="formulatablesmall">
-                    <tbody>
+                    <tbody key={this.state.key + "tbl"}>
+                        <tr key={'useradd'}>
+                            <td><input className="keypadName" type="text" placeholder="Name" onInput={(value) => this._onNameChanged(value)}></input></td>
+                            <td><input className="keypadName" type="text" placeholder="Code" maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(value) => this._onCodeChanged(value)}></input></td>
+                            <td><button onClick={() => this._onClickNewUser()} className="databaseButton">🪪 Add New User</button></td>
+                        </tr>
                         <tr>
                             <th>NAME</th>
                             <th>CODE</th>
                             <th>STATUS</th>
+                            <th>☢️ DANGERZONE</th>
                         </tr>
                         {this._renderUsers()}
                     </tbody>

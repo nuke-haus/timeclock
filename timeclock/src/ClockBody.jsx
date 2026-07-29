@@ -164,32 +164,6 @@ class ClockBody extends React.Component {
                     </div>
                 );
             }
-            else {
-                if (TC.canAddNewUser(this.state.code)) {
-                    let string = "Hello, please enter a name to create a new user...";
-                    let buttonString = "Create User";
-                    let pwd = <div></div>
-
-                    if (TC.database.people.length == 0) {
-                        pwd = <div key={this.state.key + "pwd"}>
-                            <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
-                        </div>
-                    }
-
-                    return (
-                        <div>
-                            <div>
-                                <span>{string}</span>
-                            </div>
-                            <div key={this.state.key + "name"}>
-                                <input className="keypadName" type="text" defaultValue={this.state.name} onInput={(value) => this._onNameChanged(value)}></input>
-                            </div>
-                            {pwd}
-                            <button onClick={() => this._onClickAddUser()}>{buttonString}</button>
-                        </div>
-                    );
-                }
-            }
         }
         return null;
     }

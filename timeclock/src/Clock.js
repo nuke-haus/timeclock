@@ -112,6 +112,11 @@ TC.canAddNewUser = function(code) {
     return TC.getUserData(code) == null && code.length == 3;
 }
 
+TC.removeUser = function(code) {
+    TC.database.people = TC.database.people.filter((x) => x.code != code);
+    TC.saveAllData();
+}
+
 TC.getUserData = function(code) {
     return TC.database.people.find(x => x.code == code)
 }
