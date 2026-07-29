@@ -17,6 +17,18 @@ class Page extends React.Component {
         currentNav: "🕒"
     };
 
+    componentDidMount() {
+        this.interval = setInterval(() => this._employeeCheck(), 10000);
+    }
+    
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    _employeeCheck() {
+        TC.employeeTimeCheck();
+    }
+
     constructor(props) {
         super(props);
 

@@ -76,6 +76,17 @@ TC.areEqual = function(obj1, obj2) {
 
 // Timeclock logic
 
+TC.employeeTimeCheck() {
+    let date = new Date();
+    if (date.getHours() == 23 && date.getMinutes() > 50) {
+        console.log('Clocking out all employees');
+        
+    }
+    else {
+        console.log('cant check because time is ' + date);
+    }
+}
+
 TC.getCalendarFormatDate = function(date) {
     // datepicker has a stupid format for dates it uses
     let year = date.getFullYear();

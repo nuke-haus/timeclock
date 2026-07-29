@@ -64,18 +64,22 @@ class DatabaseBody extends React.Component {
         this.setState({key: TC.guid(), endDate: date});
     }
 
-    _onStartTimeChanged(date, i) {
+    _onStartTimeChanged(date, i, idx) {
         let timestamp = date.getTime();
         TC.database.people[idx].timeSpans[i].start = timestamp;
         TC.saveAllData();
 
+        console.log(TC.database.people[idx].timeSpans[i]);
+
         this.setState({key: TC.guid()});
     }
 
-    _onEndTimeChanged(date, i) {
+    _onEndTimeChanged(date, i, idx) {
         let timestamp = date.getTime();
         TC.database.people[idx].timeSpans[i].end = timestamp;
         TC.saveAllData();
+
+        console.log(TC.database.people[idx].timeSpans[i]);
 
         this.setState({key: TC.guid()});
     }
@@ -162,13 +166,15 @@ class DatabaseBody extends React.Component {
             endDate.setTime(value.end);
 
             let total = TC.differenceInTime(startDate, endDate);
+            let idx = TC.getUserIndex(this.state.user.code);
 
             result.push(
                 <tr key={"userdata" + i + this.state.key}>
                     <td>
+                        <span className="topbutton" onClick={() => this._onDelete(i)}>❌</span>
                         <DatePicker
                             selected={startDate}
-                            onChange={(date) => this._onStartTimeChanged(date, i)}
+                            onChange={(date) => this._onStartTimeChanged(date, i, idx)}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={10}
@@ -179,7 +185,7 @@ class DatabaseBody extends React.Component {
                     <td>
                          <DatePicker
                             selected={endDate}
-                            onChange={(date) => this._onEndTimeChanged(date, i)}
+                            onChange={(date) => this._onEndTimeChanged(date, i, idx)}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={10}
@@ -244,7 +250,6 @@ class DatabaseBody extends React.Component {
         return (
             <div>
                 <div className="tabletext">
-                    USERS TABLE
                 </div>
                 <table className="formulatablesmall">
                     <tbody key={this.state.key + "tbl"}>
