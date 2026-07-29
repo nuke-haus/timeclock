@@ -64,6 +64,22 @@ class DatabaseBody extends React.Component {
         this.setState({key: TC.guid(), endDate: date});
     }
 
+    _onStartTimeChanged(date, i) {
+        let timestamp = date.getTime();
+        TC.database.people[idx].timeSpans[i].start = timestamp;
+        TC.saveAllData();
+
+        this.setState({key: TC.guid()});
+    }
+
+    _onEndTimeChanged(date, i) {
+        let timestamp = date.getTime();
+        TC.database.people[idx].timeSpans[i].end = timestamp;
+        TC.saveAllData();
+
+        this.setState({key: TC.guid()});
+    }
+
     _onTimeChanged(i, e) {
         let idx = TC.getUserIndex(this.state.user.code);
         TC.database.people[idx].timeSpans[i].time = e.target.value;
@@ -99,10 +115,10 @@ class DatabaseBody extends React.Component {
                 <table className="formulatablesmall">
                     <thead>
                         <tr>
-                            <td colspan="2">{str}</td>
+                            <td colspan="4">{str}</td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="1">
                                 <DatePicker
                                     selected={this.state.startDate}
                                     onChange={(date) => this._setStartDate(date)}
@@ -111,7 +127,7 @@ class DatabaseBody extends React.Component {
                                     endDate={this.state.endDate}
                                 />
                             </td>
-                            <td>
+                            <td colspan="1">
                                 <DatePicker
                                     selected={this.state.endDate}
                                     onChange={(date) => this._setEndDate(date)}
@@ -125,21 +141,56 @@ class DatabaseBody extends React.Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <th>DATE (DAY/MONTH/YEAR)</th>
-                            <th>HOURS LOGGED</th>
+                            <th>START TIME</th>
+                            <th>END TIME</th>
+                            <th>TOTAL</th>
                         </tr>
-                        {this._renderUserData()}
+                        {this._renderUserTimeData()}
                     </tbody>
                 </table>
             </div>
         );
     }
 
-    _renderUserData() {
-        let validSpans = this.state.user.timeSpans.filter((x) => TC.isDateInRange(x.timestamp, this.state.startDate, this.state.endDate))
+    _renderUserTimeData() {
+        let validSpans = this.state.user.timeSpans.filter((x) => TC.isDateInRange(x.start, this.state.startDate, this.state.endDate))
         let result = [];
-        for (const [i, value] of validSpans.entries()) {
-            if (Math.floor(Number(value.time)) < 9) {
+        for (let [i, value] of validSpans.entries()) {
+            let startDate = new Date();
+            let endDate = new Date();
+            startDate.setTime(value.start);
+            endDate.setTime(value.end);
+
+            let total = TC.differenceInTime(startDate, endDate);
+
+            result.push(
+                <tr key={"userdata" + i + this.state.key}>
+                    <td>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(date) => this._onStartTimeChanged(date, i)}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={10}
+                            timeCaption="time"
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                        />
+                    </td>
+                    <td>
+                         <DatePicker
+                            selected={endDate}
+                            onChange={(date) => this._onEndTimeChanged(date, i)}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={10}
+                            timeCaption="time"
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                        />
+                    </td>
+                    <td>{total}</td>
+                </tr>
+            );
+            /*if (Math.floor(Number(value.time)) < 9) {
                 result.push(
                     <tr key={'userdata' + i + this.state.key}>
                         <td>{value.date.toString()} <span className="topbutton" onClick={() => this._onDelete(i)}>❌</span></td>
@@ -166,7 +217,7 @@ class DatabaseBody extends React.Component {
                         </td>
                     </tr>
                 );
-            }
+            }*/
         }
         return result;
     }

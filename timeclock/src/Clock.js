@@ -177,8 +177,13 @@ TC.enterCode = function(code) {
             let calendarStr = TC.getCalendarFormatDate(now);
             
             TC.database.people[index].timeSpans.push({
+                start: timeSpan.getTime(),
+                end: now.getTime(),
+
+                // old stuff to ignore
                 time: diff,
                 timestamp: now.getTime(),
+
                 date: dateStr,
                 dateDay: day,
                 dateMonth: month,

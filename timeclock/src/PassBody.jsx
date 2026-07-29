@@ -24,6 +24,7 @@ class PassBody extends React.Component {
 
     _onCreateAdmin() {
         TC.addNewUser(this.state.code, this.state.name, this.state.pass);
+        TC.saveAllData();
 
         this.setState({name: "", code: ""});
     }
@@ -59,16 +60,16 @@ class PassBody extends React.Component {
                 <div>
                     <input className="keypadName" type="text" placeholder="Code" maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(value) => this._onCodeChanged(value)}></input>
                 </div>
-                <div>
-                    <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+                <div key="inputpass">
+                    <input className="keypadName" type="password" placeholder="Password" onInput={(value) => this._onPassChanged(value)}></input>
                 </div>
                 <button onClick={() => this._onCreateAdmin()}>🔑 Make Admin Account</button>
             </div>
         }
         else {
             userdata = <div>
-                <div>
-                    <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+                <div key="userpass">
+                    <input className="keypadName" type="password" placeholder="Password" onInput={(value) => this._onPassChanged(value)}></input>
                 </div>
                 <div>
                     <button onClick={() => this._onLogin()}>🔑 Log In</button>
