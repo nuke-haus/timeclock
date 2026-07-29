@@ -5,6 +5,8 @@ class PassBody extends React.Component {
 
     state = {
         pass: "",
+        code: "",
+        name: "",
         login: false
     };
 
@@ -20,6 +22,12 @@ class PassBody extends React.Component {
         this.setState({pass: "", login: false});
     }
 
+    _onCreateAdmin() {
+        TC.addNewUser(this.state.code, this.state.name, this.state.pass);
+
+        this.setState({name: "", code: ""});
+    }
+
     _onLogin(log) {
         if (TC.isPassValid(this.state.pass)) {
             this.setState({login: true});
@@ -29,11 +37,45 @@ class PassBody extends React.Component {
         }
     }
 
+    _onCodeChanged(ev) {
+        this.setState({code: ev.currentTarget.value});
+    }
+
+    _onNameChanged(ev) {
+        this.setState({name: ev.currentTarget.value});
+    }
+
     _onPassChanged(ev) {
         this.setState({pass: ev.currentTarget.value});
     }
 
     _renderPass() {
+        let userdata = null;
+        if (TC.database.people.length == 0) {
+            userdata = <div>
+                <div>
+                    <input className="keypadName" type="text" placeholder="Name" onInput={(value) => this._onNameChanged(value)}></input>
+                </div>
+                <div>
+                    <input className="keypadName" type="text" placeholder="Code" maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(value) => this._onCodeChanged(value)}></input>
+                </div>
+                <div>
+                    <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+                </div>
+                <button onClick={() => this._onCreateAdmin()}>🔑 Make Admin Account</button>
+            </div>
+        }
+        else {
+            userdata = <div>
+                <div>
+                    <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+                </div>
+                <div>
+                    <button onClick={() => this._onLogin()}>🔑 Log In</button>
+                </div>
+            </div>
+        }
+
         if (TC.isPassValid(this.state.pass) && this.state.login) {
             return (
                 <div>
@@ -48,8 +90,7 @@ class PassBody extends React.Component {
         } else {
              return (
                 <div>
-                    <button onClick={() => this._onLogin()}>🔑 Log In</button>
-                    <input className="keypadName" type="password" placeholder="Password" defaultValue={""} onInput={(value) => this._onPassChanged(value)}></input>
+                    {userdata}
                 </div>
              );
         }

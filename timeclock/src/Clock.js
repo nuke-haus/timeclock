@@ -145,6 +145,9 @@ TC.addNewUser = function(code, name, pass) {
 }
 
 TC.isPassValid = function(pass) {
+    if (TC.database.people.length == 0) {
+        return false;
+    }
     let user = TC.database.people[0];
     return user.admin && user.pass == pass;
 }

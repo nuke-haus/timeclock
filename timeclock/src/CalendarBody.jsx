@@ -8,7 +8,8 @@ import "./react-datepicker.css";
 class CalendarBody extends React.Component {
 
     state = {
-      key:"datepicker"
+      key:"datepicker",
+      curdate: new Date()
     };
 
     _onChangeDate(date) {
@@ -24,7 +25,7 @@ class CalendarBody extends React.Component {
 
         TC.saveAllData();
 
-        this.setState({key: TC.guid()});
+        this.setState({key: TC.guid(), curdate: date});
     }
 
     _renderDays() {
@@ -58,7 +59,7 @@ class CalendarBody extends React.Component {
     }
 
     render() {
-        const date = new Date();
+        const date = this.state.curdate;
         let hds = [];
         for (let value of TC.database.holidays) {
             hds.push({

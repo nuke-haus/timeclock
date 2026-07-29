@@ -200,13 +200,13 @@ class DatabaseBody extends React.Component {
                         <tr key={'useradd'}>
                             <td><input className="keypadName" type="text" placeholder="Name" onInput={(value) => this._onNameChanged(value)}></input></td>
                             <td><input className="keypadName" type="text" placeholder="Code" maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(value) => this._onCodeChanged(value)}></input></td>
-                            <td><button onClick={() => this._onClickNewUser()} className="databaseButton">🪪 Add New User</button></td>
+                            <td colspan="2"><button onClick={() => this._onClickNewUser()} className="databaseButton">🪪 Add New User</button></td>
                         </tr>
                         <tr>
                             <th>NAME</th>
                             <th>CODE</th>
                             <th>STATUS</th>
-                            <th>☢️ DANGERZONE</th>
+                            <th>DANGER ZONE</th>
                         </tr>
                         {this._renderUsers()}
                     </tbody>
