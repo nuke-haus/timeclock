@@ -48,11 +48,16 @@ TC.getTimeReport = function(d1, d2) {
         let count = 0.0;
         let statCount = 0.0;
         for (let [j, value2] of validSpans.entries()) {
+            let dt1 = new Date();
+            dt1.setTime(value2.start);
+            let dt2 = new Date();
+            dt2.setTime(value2.end);
+
             if (value2.multipluer > 1.0) {
-                statCount += TC.differenceInTime(value2.start, value2.end);
+                statCount += TC.differenceInTime(dt1, dt2);
             }
             else {
-                count += TC.differenceInTime(value2.start, value2.end);
+                count += TC.differenceInTime(dt1, dt2);
             }
         }
 
