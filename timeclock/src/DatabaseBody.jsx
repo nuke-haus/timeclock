@@ -66,7 +66,27 @@ class DatabaseBody extends React.Component {
 
     _onStartTimeChanged(date, i, idx) {
         let timestamp = date.getTime();
+
+        if (timestamp > TC.database.people[idx].timeSpans[i].end) {
+            timestamp = TC.database.people[idx].timeSpans[i].end;
+        }
+
+        let now = new Date();
+        now.setTime(timestamp);
+
+        let year = now.getFullYear();
+        let month = now.getMonth();
+        let day = now.getDate();
+        let dateStr = day + "/" + month + "/" + year;
+        let calendarStr = TC.getCalendarFormatDate(now);
+
         TC.database.people[idx].timeSpans[i].start = timestamp;
+        TC.database.people[idx].timeSpans[i].forced = false;
+        TC.database.people[idx].timeSpans[i].date = dateStr;
+        TC.database.people[idx].timeSpans[i].dateDay = day;
+        TC.database.people[idx].timeSpans[i].dateMonth = month;
+        TC.database.people[idx].timeSpans[i].dateYear = year;
+        TC.database.people[idx].timeSpans[i].calendarDate = calendarStr;
         TC.saveAllData();
 
         console.log(TC.database.people[idx].timeSpans[i]);
@@ -76,7 +96,27 @@ class DatabaseBody extends React.Component {
 
     _onEndTimeChanged(date, i, idx) {
         let timestamp = date.getTime();
+
+        if (timestamp < TC.database.people[idx].timeSpans[i].start) {
+            timestamp = TC.database.people[idx].timeSpans[i].start;
+        }
+
+        let now = new Date();
+        now.setTime(timestamp);
+
+        let year = now.getFullYear();
+        let month = now.getMonth();
+        let day = now.getDate();
+        let dateStr = day + "/" + month + "/" + year;
+        let calendarStr = TC.getCalendarFormatDate(now);
+
         TC.database.people[idx].timeSpans[i].end = timestamp;
+        TC.database.people[idx].timeSpans[i].forced = false;
+        TC.database.people[idx].timeSpans[i].date = dateStr;
+        TC.database.people[idx].timeSpans[i].dateDay = day;
+        TC.database.people[idx].timeSpans[i].dateMonth = month;
+        TC.database.people[idx].timeSpans[i].dateYear = year;
+        TC.database.people[idx].timeSpans[i].calendarDate = calendarStr;
         TC.saveAllData();
 
         console.log(TC.database.people[idx].timeSpans[i]);

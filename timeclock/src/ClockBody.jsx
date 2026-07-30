@@ -93,7 +93,7 @@ class ClockBody extends React.Component {
     }
 
     _onClickEnter() {
-        TC.enterCode(this.state.code);
+        TC.enterCode(this.state.code, false);
         TC.addEffects();
         TC.saveAllData();
 

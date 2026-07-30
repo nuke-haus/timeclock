@@ -78,16 +78,15 @@ TC.areEqual = function(obj1, obj2) {
 
 TC.employeeTimeCheck = function() {
     let date = new Date();
+    // It is nearly midnight so force a clock out for all people who are still clocked in
     if (date.getHours() == 23 && date.getMinutes() > 50) {
-        console.log('Clocking out all employees');
+        console.log('Forcing clock out for all users');
         for (let [i, value] of TC.database.people.entries()) {
             if (TC.isUserClockedIn(value.code)) {
-                TC.enterCode(value.code);
+                TC.enterCode(value.code, true);
+                TC.saveAllData();
             }
         }
-    }
-    else {
-        console.log('Cant check because time is ' + date);
     }
 }
 
@@ -175,7 +174,7 @@ TC.isUserClockedIn = function(code) {
     return false;
 }
 
-TC.enterCode = function(code) {
+TC.enterCode = function(code, forced) {
     let data = TC.getUserData(code);
     let index = TC.getUserIndex(code);
     if (data != null) {
@@ -184,28 +183,16 @@ TC.enterCode = function(code) {
             timeSpan.setTime(data.activeTimeSpan);
 
             let now = new Date();
-            let diff = TC.differenceInTime(timeSpan, now);
             let year = new Date().getFullYear();
             let month = new Date().getMonth();
             let day = new Date().getDate();
             let dateStr = day + "/" + month + "/" + year;
             let calendarStr = TC.getCalendarFormatDate(now);
-
-            let date = new Date();
-            let forced = false;
-            if (date.getHours() == 23 && date.getMinutes() > 50) {
-                forced = true;
-            }
             
             TC.database.people[index].timeSpans.push({
                 start: timeSpan.getTime(),
                 end: now.getTime(),
                 forced: forced,
-
-                // old stuff to ignore
-                time: diff,
-                timestamp: now.getTime(),
-
                 date: dateStr,
                 dateDay: day,
                 dateMonth: month,
