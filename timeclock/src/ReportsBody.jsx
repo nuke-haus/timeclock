@@ -27,12 +27,25 @@ class ReportsBody extends React.Component {
 
     _onGenerate() {
         let filename = this.state.startDate.getYear() + "-" + this.state.startDate.getMonth() + "-" + this.state.startDate.getDate();
-        let content = TC.outputAllTimeInRange(startDate, endDate);
+        let content = TC.getTimeReport(this.state.startDate, this.state.endDate);
         let encodedUri = encodeURI(content);
 
         let link = document.createElement("a");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", filename + "_report.csv");
+        document.body.appendChild(link); 
+
+        link.click(); 
+    }
+
+    _onGenerateDet() {
+        let filename = this.state.startDate.getYear() + "-" + this.state.startDate.getMonth() + "-" + this.state.startDate.getDate();
+        let content = TC.getDetailedTimeReport(this.state.startDate, this.state.endDate);
+        let encodedUri = encodeURI(content);
+
+        let link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", filename + "_detailedreport.csv");
         document.body.appendChild(link); 
 
         link.click(); 
@@ -78,6 +91,7 @@ class ReportsBody extends React.Component {
                         <tr>
                             <td colspan="2">
                                 <button onClick={() => this._onGenerate()} className="databaseButton">📄 Generate Report</button>
+                                <button onClick={() => this._onGenerateDet()} className="databaseButton">📜 Generate Detailed Report</button>
                             </td>
                         </tr>
                     </thead>

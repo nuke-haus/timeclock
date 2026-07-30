@@ -36,11 +36,51 @@ TC.loadData = function(data) {
     TC.database.holidays = data.holidays;
 }
 
-TC.outputAllTimeInRange = function(d1, d2) {
+TC.getTimeReport = function(d1, d2) {
     let csvContent = "data:text/csv;charset=utf-8,";
 
+    // header goes here
+    csvContent += "Name,Code,Total Hours,Total Stat Holiday Hours\r\n";
+
     for (let [i, value] of TC.database.people.entries()) {
-        csvContent += value.code + "," + value.name + "\r\n";
+
+        let validSpans = this.state.user.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
+        let count = 0.0;
+        let statCount = 0.0;
+        for (let [j, value2] of validSpans.entries()) {
+            if (value2.multipluer > 1.0) {
+                statCount += TC.differenceInTime(value2.start, value2.end);
+            }
+            else {
+                count += TC.differenceInTime(value2.start, value2.end);
+            }
+        }
+
+        let str = `${value.name},${value.code},${count},${statCount}\r\n`;
+        csvContent += str;
+    }
+
+    return csvContent;
+}
+
+TC.getDetailedTimeReport = function(d1, d2) {
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    // header goes here
+    csvContent += "Name,Code,Date,Total Hours,Multiplier\r\n";
+
+    for (let [i, value] of TC.database.people.entries()) {
+
+        let validSpans = this.state.user.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
+        for (let [j, value2] of validSpans.entries()) {
+            let startDate = new Date();
+            let endDate = new Date();
+            startDate.setTime(value2.start);
+            endDate.setTime(value2.end);
+            let total = TC.differenceInTime(startDate, endDate).toString();
+            let clippedTotal = total.substring(0, 5);
+            csvContent += `${value.name},${value.code},${value2.date},${clippedTotal},${value2.multiplier}\r\n`;
+        }
     }
 
     return csvContent;
@@ -48,6 +88,9 @@ TC.outputAllTimeInRange = function(d1, d2) {
 
 TC.outputAllPeopleCSV = function() {
     let csvContent = "data:text/csv;charset=utf-8,";
+
+    // header goes here
+    csvContent += "" + "\r\n";
 
     for (let [i, value] of TC.database.people.entries()) {
         csvContent += value.code + "," + value.name + "\r\n";
@@ -197,11 +240,13 @@ TC.enterCode = function(code, forced) {
             let day = new Date().getDate();
             let dateStr = day + "/" + month + "/" + year;
             let calendarStr = TC.getCalendarFormatDate(now);
+            let mult = 1.0;
             
             TC.database.people[index].timeSpans.push({
                 start: timeSpan.getTime(),
                 end: now.getTime(),
                 forced: forced,
+                multiplier: mult,
                 date: dateStr,
                 dateDay: day,
                 dateMonth: month,
