@@ -26,7 +26,7 @@ class ReportsBody extends React.Component {
     }
 
     _onGenerate() {
-        let filename = this.state.startDate.getYear() + "-" + this.state.startDate.getMonth() + "-" + this.state.startDate.getDate();
+        let filename = this.state.startDate.getFullYear() + "-" + this.state.startDate.getMonth() + "-" + this.state.startDate.getDate();
         let content = TC.getTimeReport(this.state.startDate, this.state.endDate);
         let encodedUri = encodeURI(content);
 
@@ -39,7 +39,7 @@ class ReportsBody extends React.Component {
     }
 
     _onGenerateDet() {
-        let filename = this.state.startDate.getYear() + "-" + this.state.startDate.getMonth() + "-" + this.state.startDate.getDate();
+        let filename = this.state.startDate.getFullYear() + "-" + this.state.startDate.getMonth() + "-" + this.state.startDate.getDate();
         let content = TC.getDetailedTimeReport(this.state.startDate, this.state.endDate);
         let encodedUri = encodeURI(content);
 
