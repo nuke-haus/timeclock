@@ -76,14 +76,18 @@ TC.areEqual = function(obj1, obj2) {
 
 // Timeclock logic
 
-TC.employeeTimeCheck() {
+TC.employeeTimeCheck = function() {
     let date = new Date();
     if (date.getHours() == 23 && date.getMinutes() > 50) {
         console.log('Clocking out all employees');
-        
+        for (let [i, value] of TC.database.people.entries()) {
+            if (TC.isUserClockedIn(value.code)) {
+                TC.enterCode(value.code);
+            }
+        }
     }
     else {
-        console.log('cant check because time is ' + date);
+        console.log('Cant check because time is ' + date);
     }
 }
 
@@ -186,10 +190,17 @@ TC.enterCode = function(code) {
             let day = new Date().getDate();
             let dateStr = day + "/" + month + "/" + year;
             let calendarStr = TC.getCalendarFormatDate(now);
+
+            let date = new Date();
+            let forced = false;
+            if (date.getHours() == 23 && date.getMinutes() > 50) {
+                forced = true;
+            }
             
             TC.database.people[index].timeSpans.push({
                 start: timeSpan.getTime(),
                 end: now.getTime(),
+                forced: forced,
 
                 // old stuff to ignore
                 time: diff,

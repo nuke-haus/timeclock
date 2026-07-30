@@ -165,8 +165,13 @@ class DatabaseBody extends React.Component {
             startDate.setTime(value.start);
             endDate.setTime(value.end);
 
-            let total = TC.differenceInTime(startDate, endDate);
+            let total = TC.differenceInTime(startDate, endDate).toString();
+            let clippedTotal = total.substring(0, 5);
             let idx = TC.getUserIndex(this.state.user.code);
+
+            if (value.forced) {
+                clippedTotal = "(FORCED) " + clippedTotal;
+            }
 
             result.push(
                 <tr key={"userdata" + i + this.state.key}>
@@ -193,7 +198,7 @@ class DatabaseBody extends React.Component {
                             dateFormat="MMMM d, yyyy h:mm aa"
                         />
                     </td>
-                    <td>{total}</td>
+                    <td>{clippedTotal}</td>
                 </tr>
             );
             /*if (Math.floor(Number(value.time)) < 9) {
