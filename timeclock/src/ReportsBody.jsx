@@ -26,13 +26,13 @@ class ReportsBody extends React.Component {
     }
 
     _onGenerate() {
-        let filename = startDate.getYear() + "-" + startDate.getMonth() + "-" + startDate.getDate();
+        let filename = this.state.startDate.getYear() + "-" + this.state.startDate.getMonth() + "-" + this.state.startDate.getDate();
         let content = TC.outputAllTimeInRange(startDate, endDate);
-
         let encodedUri = encodeURI(content);
+
         let link = document.createElement("a");
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", filename + ".csv");
+        link.setAttribute("download", filename + "_report.csv");
         document.body.appendChild(link); 
 
         link.click(); 
