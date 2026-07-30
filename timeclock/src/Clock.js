@@ -255,7 +255,7 @@ TC.enterCode = function(code, forced) {
             });
             TC.database.people[index].activeTimeSpan = null;
 
-            console.log("Clocked out " + data.name + " - " + diff);
+            console.log("Clocked out " + data.name + " - " + dateStr);
         } else {
             TC.database.people[index].activeTimeSpan = new Date().getTime();
 
