@@ -150,7 +150,7 @@ class DatabaseBody extends React.Component {
             return null;
         }
 
-        let str = `Viewing entries for ${this.state.user.name} in date range`;
+        let str = `Viewing timeclock data for ${this.state.user.name} in date range`;
         return (
             <div key={this.state.key}>
                 <div className="tabletext">
@@ -280,7 +280,7 @@ class DatabaseBody extends React.Component {
                 <tr key={'user' + i}>
                     <td><button onClick={() => this._onClickUser(value)} className="databaseButton">{value.name}</button></td>
                     <td>{value.code}</td>
-                    <td>{value.activeTimeSpan != null ? "✅ CLOCKED IN" : "❎ NOT IN"}</td>
+                    <td>{value.activeTimeSpan != null ? "🔵 CLOCKED IN" : "⚫ NOT IN"}</td>
                     <td><button onClick={() => this._onClickDeleteUser(value.code)} className="databaseButton">☢️ Delete User</button></td>
                 </tr>
             );

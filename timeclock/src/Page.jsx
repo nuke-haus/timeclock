@@ -8,13 +8,13 @@ import TC from './Clock.js'
 
 class Page extends React.Component {
 
-    NAV_CLOCK = "🕒";
+    NAV_CLOCK = "⏱️";
     NAV_DATABASE = "📇";
     NAV_CALENDAR = "🗓️";
     NAV_REPORTS = "📃";
 
     state = {
-        currentNav: "🕒"
+        currentNav: "⏱️"
     };
 
     componentDidMount() {
