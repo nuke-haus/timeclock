@@ -36,13 +36,22 @@ TC.loadData = function(data) {
     TC.database.holidays = data.holidays;
 }
 
+TC.outputAllTimeInRange = function(d1, d2) {
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    for (let [i, value] of TC.database.people.entries()) {
+        csvContent += value.code + "," + value.name + "\r\n";
+    }
+
+    return csvContent;
+}
+
 TC.outputAllPeopleCSV = function() {
     let csvContent = "data:text/csv;charset=utf-8,";
 
-    rows.forEach(function(rowArray) {
-        let row = rowArray.join(",");
-        csvContent += row + "\r\n";
-    });
+    for (let [i, value] of TC.database.people.entries()) {
+        csvContent += value.code + "," + value.name + "\r\n";
+    }
 
     var encodedUri = encodeURI(csvContent);
     window.open(encodedUri);

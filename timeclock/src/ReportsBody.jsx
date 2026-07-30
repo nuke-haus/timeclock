@@ -1,10 +1,15 @@
 import React from 'react';
 import TC from './Clock.js';
+import DatePicker from "react-datepicker";
+
+import "./react-datepicker.css";
 
 class ReportsBody extends React.Component {
 
     state = {
-       user: null
+       key: "report",
+       startDate: new Date(),
+       endDate: new Date()
     };
 
     _formatName(value) {
@@ -20,78 +25,63 @@ class ReportsBody extends React.Component {
         return String(value).toUpperCase();
     }
 
-    _onClickUser(user) {
-        this.setState({user: user});
+    _onGenerate() {
+        let filename = startDate.getYear() + "-" + startDate.getMonth() + "-" + startDate.getDate();
+        let content = TC.outputAllTimeInRange(startDate, endDate);
+
+        let encodedUri = encodeURI(content);
+        let link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", filename + ".csv");
+        document.body.appendChild(link); 
+
+        link.click(); 
     }
 
-    _renderSingleUser() {
-        if (this.state.user == null) {
-            return null;
-        }
+    _setStartDate(date) {
+        this.setState({key: TC.guid(), startDate: date});
+    }
+    
+    _setEndDate(date) {
+        this.setState({key: TC.guid(), endDate: date});
+    }
 
-        let str = this.state.user.name;
+    _renderReportBody() {
         return (
-            <div>
-                <div className="tabletext">
-                    {str}
-                </div>
+            <div key={this.state.key}>
                 <table className="formulatablesmall">
-                    <tbody>
+                    <thead>
                         <tr>
-                            <th>DATE (DAY/MONTH/YEAR)</th>
-                            <th>HOURS LOGGED</th>
+                            <td colspan="2">Generate report for date range</td>
                         </tr>
-                        {this._renderUserData()}
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
-
-    _renderUserData() {
-        let result = [];
-        for (const [i, value] of this.state.user.timeSpans.entries()) {
-            result.push(
-                <tr key={'userdata' + i}>
-                    <td>{value.date.toString()}</td>
-                    <td>{value.time || 'INVALID'}</td>
-                </tr>
-            );
-        }
-        return result;
-    }
-
-    _renderUsers() {
-        let result = [];
-        for (const [i, value] of TC.database.people.entries()) {
-            result.push(
-                <tr key={'user' + i}>
-                    <td><button onClick={() => this._onClickUser(value)} className="databaseButton">{value.name}</button></td>
-                    <td>{value.code}</td>
-                    <td>{value.activeTimeSpan != null ? "✅ CLOCKED IN" : "❎ NOT IN"}</td>
-                </tr>
-            );
-        }
-        return result;
-    }
-
-    _renderUserList() {
-        if (TC.database.people.length === 0) {
-            return null;
-        }
-        return (
-            <div>
-                <div className="tabletext">
-                    USERS TABLE
-                </div>
-                <table className="formulatablesmall">
-                    <tbody>
                         <tr>
-                            <th>NAME</th>
-                            <th>CODE</th>
-                            <th>STATUS</th>
+                            <td colspan="1">
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={(date) => this._setStartDate(date)}
+                                    selectsStart
+                                    startDate={this.state.startDate}
+                                    endDate={this.state.endDate}
+                                />
+                            </td>
+                            <td colspan="1">
+                                <DatePicker
+                                    selected={this.state.endDate}
+                                    onChange={(date) => this._setEndDate(date)}
+                                    selectsEnd
+                                    startDate={this.state.startDate}
+                                    endDate={this.state.endDate}
+                                    minDate={this.state.startDate}
+                                />
+                            </td>
                         </tr>
-                        {this._renderUsers()}
+                        <tr>
+                            <td colspan="2">
+                                <button onClick={() => this._onGenerate()} className="databaseButton">📄 Generate Report</button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
                     </tbody>
                 </table>
             </div>
@@ -101,9 +91,9 @@ class ReportsBody extends React.Component {
     render() {
         return (
             <div className="centerContent">
-                {this._renderUserList()}
+                {this._renderReportBody()}
                 <br/>
-                {this._renderSingleUser()}
+            
             </div>
         );
     }
