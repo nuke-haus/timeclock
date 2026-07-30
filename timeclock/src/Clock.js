@@ -44,7 +44,7 @@ TC.getTimeReport = function(d1, d2) {
 
     for (let [i, value] of TC.database.people.entries()) {
 
-        let validSpans = this.state.user.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
+        let validSpans = value.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
         let count = 0.0;
         let statCount = 0.0;
         for (let [j, value2] of validSpans.entries()) {
@@ -71,7 +71,7 @@ TC.getDetailedTimeReport = function(d1, d2) {
 
     for (let [i, value] of TC.database.people.entries()) {
 
-        let validSpans = this.state.user.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
+        let validSpans = value.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
         for (let [j, value2] of validSpans.entries()) {
             let startDate = new Date();
             let endDate = new Date();
