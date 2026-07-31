@@ -166,11 +166,11 @@ TC.hasHoliday = function(date) {
 }
 
 TC.addHoliday = function(date, timestamp) {
-    let h = {
+    let entry = {
         date: date,
         timestamp: timestamp
-    }
-    TC.database.holidays.push(date);
+    };
+    TC.database.holidays.push(entry);
     TC.database.holidays.sort();
 }
 
