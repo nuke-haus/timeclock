@@ -32,7 +32,7 @@ class CalendarBody extends React.Component {
         for (let value of TC.database.holidays) {
             hds.push(
                 <tr>
-                    <td>{value}</td>
+                    <td>{value.date}</td>
                 </tr>
             );
         }
@@ -62,8 +62,8 @@ class CalendarBody extends React.Component {
         let hds = [];
         for (let value of TC.database.holidays) {
             hds.push({
-                date: value,
-                holidayName: "Holiday " + value
+                date: value.date,
+                holidayName: "Holiday " + value.date
             });
         }
 
