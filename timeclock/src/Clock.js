@@ -53,7 +53,7 @@ TC.getTimeReport = function(d1, d2) {
             let dt2 = new Date();
             dt2.setTime(value2.end);
 
-            if (value2.multipluer > 1.0) {
+            if (value2.multiplier > 1.0) {
                 statCount += TC.differenceInTime(dt1, dt2);
             }
             else {
@@ -162,16 +162,20 @@ TC.getCalendarFormatDate = function(date) {
 }
 
 TC.hasHoliday = function(date) {
-    return TC.database.holidays.find(x => x === date) != undefined;
+    return TC.database.holidays.find(x => x.date === date) != undefined;
 }
 
-TC.addHoliday = function(date) {
+TC.addHoliday = function(date, timestamp) {
+    let h = {
+        date: date,
+        timestamp: timestamp
+    }
     TC.database.holidays.push(date);
     TC.database.holidays.sort();
 }
 
 TC.removeHoliday = function(date) {
-    TC.database.holidays = TC.database.holidays.filter(x => x !== date);
+    TC.database.holidays = TC.database.holidays.filter(x => x.date !== date);
 }
 
 TC.isCodeLength3 = function(code) {
@@ -231,6 +235,27 @@ TC.isUserClockedIn = function(code) {
     return false;
 }
 
+TC.checkDateForHoliday = function(timestamp) {
+    let date = new Date();
+    date.setTime(timestamp);
+    let formatted = TC.getCalendarFormatDate(date);
+    let result = null;
+
+    for (let [i, value] of TC.database.holidays.entries()) { 
+        let hdate = new Date();
+        hdate.setTime(value.timestamp);
+        let str = TC.getCalendarFormatDate(hdate);
+
+        if (str == formatted) {
+            result = value.timestamp;
+        }
+    }
+
+    let holiday = TC.database.holidays.find(x => x.timestamp == result);
+
+    return holiday;
+}
+
 TC.enterCode = function(code, forced) {
     let data = TC.getUserData(code);
     let index = TC.getUserIndex(code);
@@ -247,6 +272,8 @@ TC.enterCode = function(code, forced) {
             let calendarStr = TC.getCalendarFormatDate(now);
             let mult = 1.0;
             
+            
+
             TC.database.people[index].timeSpans.push({
                 start: timeSpan.getTime(),
                 end: now.getTime(),

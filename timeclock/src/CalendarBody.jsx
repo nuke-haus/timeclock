@@ -13,14 +13,13 @@ class CalendarBody extends React.Component {
     };
 
     _onChangeDate(date) {
-        //console.log(date);
-
         let str = TC.getCalendarFormatDate(date);
+        let time = date.getTime();
 
         if (TC.hasHoliday(str)) {
             TC.removeHoliday(str);
         } else {
-            TC.addHoliday(str);
+            TC.addHoliday(str, time);
         }
 
         TC.saveAllData();

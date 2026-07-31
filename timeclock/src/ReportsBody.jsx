@@ -32,7 +32,7 @@ class ReportsBody extends React.Component {
 
         let link = document.createElement("a");
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", filename + "_report.csv");
+        link.setAttribute("download", filename + "-report.csv");
         document.body.appendChild(link); 
 
         link.click(); 
@@ -45,7 +45,7 @@ class ReportsBody extends React.Component {
 
         let link = document.createElement("a");
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", filename + "_detailedreport.csv");
+        link.setAttribute("download", filename + "-detailedreport.csv");
         document.body.appendChild(link); 
 
         link.click(); 
