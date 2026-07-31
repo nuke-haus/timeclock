@@ -162,7 +162,7 @@ TC.getCalendarFormatDate = function(date) {
 }
 
 TC.hasHoliday = function(date) {
-    return TC.database.holidays.find(x => x.date === date) != undefined;
+    return TC.database.holidays.find(x => x.date == date) != undefined;
 }
 
 TC.addHoliday = function(date, timestamp) {
@@ -175,7 +175,7 @@ TC.addHoliday = function(date, timestamp) {
 }
 
 TC.removeHoliday = function(date) {
-    TC.database.holidays = TC.database.holidays.filter(x => x.date !== date);
+    TC.database.holidays = TC.database.holidays.filter(x => x.date != date);
 }
 
 TC.isCodeLength3 = function(code) {
@@ -252,7 +252,6 @@ TC.checkDateForHoliday = function(timestamp) {
     }
 
     let holiday = TC.database.holidays.find(x => x.timestamp == result);
-
     return holiday;
 }
 
@@ -271,8 +270,10 @@ TC.enterCode = function(code, forced) {
             let dateStr = day + "/" + month + "/" + year;
             let calendarStr = TC.getCalendarFormatDate(now);
             let mult = 1.0;
-            
-            
+            let holiday = TC.checkDateForHoliday(data.activeTimeSpan);
+            if (holiday != undefined) {
+                mult = 2.0;
+            }
 
             TC.database.people[index].timeSpans.push({
                 start: timeSpan.getTime(),
