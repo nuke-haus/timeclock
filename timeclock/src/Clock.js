@@ -39,8 +39,8 @@ TC.loadData = function(data) {
 TC.getTimeReport = function(d1, d2) {
     let csvContent = "data:text/csv;charset=utf-8,";
 
-    // header goes here
-    csvContent += "Name,Code,Total Hours,Total Stat Holiday Hours\r\n";
+    // header is not used
+    // csvContent += "Code,Name,Total Hours,Total Stat Holiday Hours\r\n";
 
     for (let [i, value] of TC.database.people.entries()) {
 
@@ -61,8 +61,13 @@ TC.getTimeReport = function(d1, d2) {
             }
         }
 
-        let str = `${value.name},${value.code},${count},${statCount}\r\n`;
+        let normStr = `${value.code},${value.name},1,${count}\r\n`;
         csvContent += str;
+
+        if (statCount > 0.0) {
+            let statStr = `${value.code},${value.name},2,${statCount}\r\n`;
+            csvContent += statStr;
+        }
     }
 
     return csvContent;

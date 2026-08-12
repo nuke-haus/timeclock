@@ -52,10 +52,12 @@ class ReportsBody extends React.Component {
     }
 
     _setStartDate(date) {
+        date.setHours(1);
         this.setState({key: TC.guid(), startDate: date});
     }
     
     _setEndDate(date) {
+        date.setHours(23);
         this.setState({key: TC.guid(), endDate: date});
     }
 
@@ -91,7 +93,6 @@ class ReportsBody extends React.Component {
                         <tr>
                             <td colspan="2">
                                 <button onClick={() => this._onGenerate()} className="databaseButton">📄 Generate Report</button>
-                                <button onClick={() => this._onGenerateDet()} className="databaseButton">📜 Generate Detailed Report</button>
                             </td>
                         </tr>
                     </thead>
@@ -101,6 +102,7 @@ class ReportsBody extends React.Component {
             </div>
         );
     }
+    // <button onClick={() => this._onGenerateDet()} className="databaseButton">📜 Generate Detailed Report</button>
 
     render() {
         return (
