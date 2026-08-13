@@ -63,12 +63,12 @@ TC.getTimeReport = function(d1, d2) {
         // Format is as follows
         // code,name,1or2,hours,rate,,NA,1,,date,hours*rate
         let mult = count * value.rate;
-        let normStr = `"${value.code}","${fullName}",1,${count},${value.rate},,NA,1,,${date},${mult}\r\n`;
+        let normStr = `${value.code},"${fullName}",1,${count},${value.rate},,NA,1,,${date},${mult}\r\n`;
         csvContent += normStr;
 
         if (statCount > 0.0) {
             let statMult = statCount * (value.rate * 1.5);
-            let statStr = `"${value.code}","${fullName}",2,${statCount},${value.rate},,NA,1,,${date},${statMult}\r\n`;
+            let statStr = `${value.code},"${fullName}",2,${statCount},${value.rate},,NA,1,,${date},${statMult}\r\n`;
             csvContent += statStr;
         }
     }
