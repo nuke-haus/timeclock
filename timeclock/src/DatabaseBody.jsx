@@ -147,7 +147,6 @@ class DatabaseBody extends React.Component {
             let rate = parseFloat(ev.currentTarget.value);
             TC.updateUserRate(user, rate);
         }
-        console.log(ev.currentTarget.value)
         this.setState({userRate: ev.currentTarget.value});
     }
 

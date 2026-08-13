@@ -296,6 +296,9 @@ TC.enterCode = function(code, forced) {
             timeSpan.setTime(data.activeTimeSpan);
 
             let now = new Date();
+            let year = now.getFullYear();
+            let month = now.getMonth();
+            let day = now.getDate();
             let dateStr = TC.formatDate(now);
             let calendarStr = TC.getCalendarFormatDate(now);
             let mult = 1.0;
