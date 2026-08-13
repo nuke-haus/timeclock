@@ -48,7 +48,7 @@ TC.getTimeReport = function(d1, d2) {
         let validSpans = value.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
         let count = 0.0;
         let statCount = 0.0;
-        let fullname = value.lastName.toUpperCase() + ", " + value.name.toUpperCase();
+        let fullName = value.lastName.toUpperCase() + ", " + value.name.toUpperCase();
         for (let [j, value2] of validSpans.entries()) {
             let dt1 = new Date();
             dt1.setTime(value2.start);

@@ -93,8 +93,6 @@ class DatabaseBody extends React.Component {
         TC.database.people[idx].timeSpans[i].calendarDate = calendarStr;
         TC.saveAllData();
 
-        console.log(TC.database.people[idx].timeSpans[i]);
-
         this.setState({key: TC.guid()});
     }
 
