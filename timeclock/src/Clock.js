@@ -38,10 +38,7 @@ TC.loadData = function(data) {
 
 TC.getTimeReport = function(d1, d2) {
     let csvContent = "data:text/csv;charset=utf-8,";
-    let date = TC.formatDate(new Date());
-
-    // header is not used
-    // csvContent += "Code,Name,Total Hours,Total Stat Holiday Hours\r\n";
+    let date = TC.formatDateStupidly(new Date());
 
     for (let [i, value] of TC.database.people.entries()) {
 
@@ -284,6 +281,14 @@ TC.formatDate = function(date) {
     let month = date.getMonth();
     let day = date.getDate();
     let dateStr = day + "/" + month + "/" + year;
+    return dateStr;
+}
+
+TC.formatDateStupidly = function(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+    let dateStr = month + "/" + day + "/" + year;
     return dateStr;
 }
 

@@ -134,7 +134,7 @@ class DatabaseBody extends React.Component {
     }
 
     _onCodeChanged(ev) {
-        this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 6)});
+        this.setState({code: ev.currentTarget.value + "", greet: Math.round(Math.random() * 6)});
     }
 
     _onUserRateChanged(ev) {
@@ -150,9 +150,9 @@ class DatabaseBody extends React.Component {
         let user = this.state.user;
         let code = ev.currentTarget.value;
         if (code.length == 3) {
-            TC.updateUserCode(user, code);
+            TC.updateUserCode(user, code + "");
         }
-        this.setState({userCode: code});
+        this.setState({userCode: code + ""});
     }
 
     _onNameChanged(ev) {
