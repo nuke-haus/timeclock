@@ -233,7 +233,7 @@ class DatabaseBody extends React.Component {
                         <tr>
                             <th>START TIME</th>
                             <th>END TIME</th>
-                            <th>MULTIPLIER</th>
+                            <th>MULT</th>
                             <th>TOTAL</th>
                         </tr>
                         {this._renderUserTimeData()}
