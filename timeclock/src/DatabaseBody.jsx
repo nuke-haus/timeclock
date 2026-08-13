@@ -8,9 +8,11 @@ class DatabaseBody extends React.Component {
 
     state = {
        name: "",
+       lastName: "",
        code: "",
        user: null,
        key: "db",
+       rate: 0.0,
        startDate: new Date(),
        endDate: new Date()
     };
@@ -129,12 +131,20 @@ class DatabaseBody extends React.Component {
         TC.database.people[idx].timeSpans[i].time = e.target.value;
     }
 
+    _onRateChanged(ev) {
+        this.setState({rate: parseFloat(ev.currentTarget.value)});
+    }
+
     _onCodeChanged(ev) {
         this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 6)});
     }
 
     _onNameChanged(ev) {
         this.setState({name: ev.currentTarget.value});
+    }
+
+     _onLastNameChanged(ev) {
+        this.setState({lastName: ev.currentTarget.value});
     }
 
     _onDelete(i) {
@@ -278,7 +288,7 @@ class DatabaseBody extends React.Component {
         for (const [i, value] of TC.database.people.entries()) {
             result.push(
                 <tr key={'user' + i}>
-                    <td><button onClick={() => this._onClickUser(value)} className="databaseButton">{value.name}</button></td>
+                    <td><button onClick={() => this._onClickUser(value)} className="databaseButton">{value.name + " " + value.lastName}</button></td>
                     <td>{value.code}</td>
                     <td>{value.activeTimeSpan != null ? "🔵 CLOCKED IN" : "⚫ NOT IN"}</td>
                     <td><button onClick={() => this._onClickDeleteUser(value.code)} className="databaseButton">☢️ Delete User</button></td>
@@ -297,12 +307,18 @@ class DatabaseBody extends React.Component {
                 <div className="tabletext">
                 </div>
                 <table className="formulatablesmall">
-                    <tbody key={this.state.key + "tbl"}>
-                        <tr key={'useradd'}>
-                            <td><input className="keypadName" type="text" placeholder="Name" onInput={(value) => this._onNameChanged(value)}></input></td>
+                    <tbody>
+                        <tr key='useradd'>
+                            <td><input className="keypadName" type="text" placeholder="First Name" onInput={(value) => this._onNameChanged(value)}></input></td>
+                            <td><input className="keypadName" type="text" placeholder="Last Name" onInput={(value) => this._onLastNameChanged(value)}></input></td>
                             <td><input className="keypadName" type="text" placeholder="Code" maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(value) => this._onCodeChanged(value)}></input></td>
+                            <td><input className="keypadName" type="text" placeholder="Rate" maxlength="5" onInput={(value) => this._onRateChanged(value)}></input></td>
                             <td colspan="2"><button onClick={() => this._onClickNewUser()} className="databaseButton">🪪 Add New User</button></td>
                         </tr>
+                    </tbody>
+                </table>
+                <table className="formulatablesmall">
+                    <tbody key={this.state.key + "tbl"}>
                         <tr>
                             <th>NAME</th>
                             <th>CODE</th>

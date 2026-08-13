@@ -205,7 +205,7 @@ TC.getUserIndex = function(code) {
     return TC.database.people.findIndex(x => x.code == code);
 }
 
-TC.addNewUser = function(code, name, pass) {
+TC.addNewUser = function(code, name, lastName, rate, pass) {
     let admin = false;
     if (TC.database.people.length == 0) {
         admin = true;
@@ -213,6 +213,8 @@ TC.addNewUser = function(code, name, pass) {
     let user = {
         code: code,
         name: name,
+        lastName: lastName,
+        rate: rate,
         pass: pass,
         admin: admin,
         timeSpans: [],
