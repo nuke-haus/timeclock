@@ -309,8 +309,14 @@ class DatabaseBody extends React.Component {
                 <table className="formulatablesmall">
                     <tbody>
                         <tr key='useradd'>
-                            <td><input className="keypadName" type="text" placeholder="First Name" onInput={(value) => this._onNameChanged(value)}></input></td>
-                            <td><input className="keypadName" type="text" placeholder="Last Name" onInput={(value) => this._onLastNameChanged(value)}></input></td>
+                            <td>
+                                <div>
+                                    <input className="keypadName" type="text" placeholder="First Name" onInput={(value) => this._onNameChanged(value)}></input>
+                                </div>
+                                <div>
+                                    <input className="keypadName" type="text" placeholder="Last Name" onInput={(value) => this._onLastNameChanged(value)}></input>
+                                </div>
+                            </td>
                             <td><input className="keypadName" type="text" placeholder="Code" maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(value) => this._onCodeChanged(value)}></input></td>
                             <td><input className="keypadName" type="text" placeholder="Rate" maxlength="5" onInput={(value) => this._onRateChanged(value)}></input></td>
                             <td colspan="2"><button onClick={() => this._onClickNewUser()} className="databaseButton">🪪 Add New User</button></td>
