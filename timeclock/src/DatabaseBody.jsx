@@ -233,6 +233,7 @@ class DatabaseBody extends React.Component {
                         <tr>
                             <th>START TIME</th>
                             <th>END TIME</th>
+                            <th>MULTIPLIER</th>
                             <th>TOTAL</th>
                         </tr>
                         {this._renderUserTimeData()}
@@ -284,6 +285,7 @@ class DatabaseBody extends React.Component {
                             dateFormat="MMMM d, yyyy h:mm aa"
                         />
                     </td>
+                    <td>{value.mult}</td>
                     <td>{clippedTotal}</td>
                 </tr>
             );

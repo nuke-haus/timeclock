@@ -309,7 +309,7 @@ TC.enterCode = function(code, forced) {
             let mult = 1.0;
             let holiday = TC.checkDateForHoliday(data.activeTimeSpan);
             if (holiday != undefined) {
-                mult = 2.0;
+                mult = 1.5;
             }
 
             TC.database.people[index].timeSpans.push({
