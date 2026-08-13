@@ -285,7 +285,7 @@ class DatabaseBody extends React.Component {
                             dateFormat="MMMM d, yyyy h:mm aa"
                         />
                     </td>
-                    <td>{value.mult}</td>
+                    <td>{value.multiplier}</td>
                     <td>{clippedTotal}</td>
                 </tr>
             );
