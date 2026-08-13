@@ -7,6 +7,8 @@ class PassBody extends React.Component {
         pass: "",
         code: "",
         name: "",
+        lastName: "",
+        rate: "",
         login: false
     };
 
@@ -23,10 +25,10 @@ class PassBody extends React.Component {
     }
 
     _onCreateAdmin() {
-        TC.addNewUser(this.state.code, this.state.name, this.state.pass);
+        TC.addNewUser(this.state.code, this.state.name, this.state.lastName, this.state.rate, this.state.pass);
         TC.saveAllData();
 
-        this.setState({name: "", code: ""});
+        this.setState({name: "", code: "", lastName: "", rate: ""});
     }
 
     _onLogin(log) {
@@ -42,6 +44,14 @@ class PassBody extends React.Component {
         this.setState({code: ev.currentTarget.value});
     }
 
+    _onRateChanged(ev) {
+        this.setState({rate: ev.currentTarget.value});
+    }
+
+    _onLastNameChanged(ev) {
+        this.setState({lastName: ev.currentTarget.value});
+    }
+
     _onNameChanged(ev) {
         this.setState({name: ev.currentTarget.value});
     }
@@ -55,7 +65,13 @@ class PassBody extends React.Component {
         if (TC.database.people.length == 0) {
             userdata = <div>
                 <div>
-                    <input className="keypadName" type="text" placeholder="Name" onInput={(value) => this._onNameChanged(value)}></input>
+                    <input className="keypadName" type="text" placeholder="First Name" onInput={(value) => this._onNameChanged(value)}></input>
+                </div>
+                <div>
+                    <input className="keypadName" type="text" placeholder="Last Name" onInput={(value) => this._onLastNameChanged(value)}></input>
+                </div>
+                <div>
+                    <input className="keypadName" type="text" placeholder="Rate" onInput={(value) => this._onRateChanged(value)}></input>
                 </div>
                 <div>
                     <input className="keypadName" type="text" placeholder="Code" maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(value) => this._onCodeChanged(value)}></input>

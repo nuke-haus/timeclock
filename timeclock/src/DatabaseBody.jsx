@@ -13,6 +13,8 @@ class DatabaseBody extends React.Component {
        user: null,
        key: "db",
        rate: 0.0,
+       userCode: "",
+       userRate: 0.0,
        startDate: new Date(),
        endDate: new Date()
     };
@@ -51,7 +53,7 @@ class DatabaseBody extends React.Component {
         let yesterday = new Date();
         yesterday.setDate(date.getDate() - 1);
 
-        this.setState({user: user, key: TC.guid(), startDate: yesterday, endDate: date});
+        this.setState({user: user, userCode: user.code, userRate: user.rate, key: TC.guid(), startDate: yesterday, endDate: date});
     }
 
     _onLoseFocus() {
@@ -139,6 +141,25 @@ class DatabaseBody extends React.Component {
         this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 6)});
     }
 
+    _onUserRateChanged(ev) {
+        let user = this.state.user;
+        if (ev.currentTarget.value.length > 0) {
+            let rate = parseFloat(ev.currentTarget.value);
+            TC.updateUserRate(user, rate);
+        }
+        console.log(ev.currentTarget.value)
+        this.setState({userRate: ev.currentTarget.value});
+    }
+
+    _onUserCodeChanged(ev) {
+        let user = this.state.user;
+        let code = ev.currentTarget.value;
+        if (code.length == 3) {
+            TC.updateUserCode(user, code);
+        }
+        this.setState({userCode: code});
+    }
+
     _onNameChanged(ev) {
         this.setState({name: ev.currentTarget.value});
     }
@@ -161,11 +182,31 @@ class DatabaseBody extends React.Component {
         }
 
         let str = `Viewing timeclock data for ${this.state.user.name} in date range`;
+        let modStr = `Modify data for ${this.state.user.name}`;
         return (
             <div key={this.state.key}>
                 <div className="tabletext">
                     {""}
                 </div>
+                <table className="formulatablesmall">
+                    <thead>
+                        <tr>
+                            <td colspan="2">
+                                {modStr}
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <td>
+                            CODE: 
+                            <input className="keypadName" type="text" value={this.state.userCode} maxlength="3" pattern="[0-9][0-9][0-9]" onInput={(val) => this._onUserCodeChanged(val)}/>
+                        </td>
+                        <td>
+                            RATE: 
+                            <input className="keypadName" type="text" value={this.state.userRate} onInput={(val) => this._onUserRateChanged(val)}/>
+                        </td>
+                    </tbody>
+                </table>
                 <table className="formulatablesmall">
                     <thead>
                         <tr>
@@ -290,6 +331,7 @@ class DatabaseBody extends React.Component {
                 <tr key={'user' + i}>
                     <td><button onClick={() => this._onClickUser(value)} className="databaseButton">{value.name + " " + value.lastName}</button></td>
                     <td>{value.code}</td>
+                    <td>{value.rate}</td>
                     <td>{value.activeTimeSpan != null ? "🔵 CLOCKED IN" : "⚫ NOT IN"}</td>
                     <td><button onClick={() => this._onClickDeleteUser(value.code)} className="databaseButton">☢️ Delete User</button></td>
                 </tr>
@@ -328,6 +370,7 @@ class DatabaseBody extends React.Component {
                         <tr>
                             <th>NAME</th>
                             <th>CODE</th>
+                            <th>RATE</th>
                             <th>STATUS</th>
                             <th>DANGER ZONE</th>
                         </tr>

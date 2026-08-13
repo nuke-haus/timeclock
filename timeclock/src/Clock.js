@@ -38,6 +38,7 @@ TC.loadData = function(data) {
 
 TC.getTimeReport = function(d1, d2) {
     let csvContent = "data:text/csv;charset=utf-8,";
+    let date = TC.formatDate(new Date());
 
     // header is not used
     // csvContent += "Code,Name,Total Hours,Total Stat Holiday Hours\r\n";
@@ -47,6 +48,7 @@ TC.getTimeReport = function(d1, d2) {
         let validSpans = value.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
         let count = 0.0;
         let statCount = 0.0;
+        let fullname = value.lastName.toUpperCase() + ", " + value.name.toUpperCase();
         for (let [j, value2] of validSpans.entries()) {
             let dt1 = new Date();
             dt1.setTime(value2.start);
@@ -61,11 +63,15 @@ TC.getTimeReport = function(d1, d2) {
             }
         }
 
-        let normStr = `${value.code},${value.name},1,${count}\r\n`;
+        // Format is as follows
+        // code,name,1or2,hours,rate,,NA,1,,date,hours*rate
+        let mult = count * value.rate;
+        let normStr = `${value.code},${fullName},1,${count},${value.rate},,NA,1,,${date},${mult}\r\n`;
         csvContent += str;
 
         if (statCount > 0.0) {
-            let statStr = `${value.code},${value.name},2,${statCount}\r\n`;
+            let statMult = statCount * (value.rate * 1.5);
+            let statStr = `${value.code},${fullName},2,${statCount},${value.rate},,NA,1,,${date},${statMult}\r\n`;
             csvContent += statStr;
         }
     }
@@ -73,6 +79,7 @@ TC.getTimeReport = function(d1, d2) {
     return csvContent;
 }
 
+// Not needed?
 TC.getDetailedTimeReport = function(d1, d2) {
     let csvContent = "data:text/csv;charset=utf-8,";
 
@@ -135,8 +142,6 @@ TC.deepCopy = function(object) {
 TC.areEqual = function(obj1, obj2) {
     return JSON.stringify(obj1 || "").localeCompare(JSON.stringify(obj2 || "")) === 0;
 }
-
-// Timeclock logic
 
 TC.employeeTimeCheck = function() {
     let date = new Date();
@@ -226,6 +231,18 @@ TC.addNewUser = function(code, name, lastName, rate, pass) {
     console.log("Added new user '" + user.name + "' with code " + user.code);
 }
 
+TC.updateUserRate = function(user, rate) {
+    let index = TC.getUserIndex(user.code);
+    TC.database.people[index].rate = rate;
+    TC.saveAllData();
+}
+
+TC.updateUserCode = function(user, code) {
+    let index = TC.getUserIndex(user.code);
+    TC.database.people[index].code = code;
+    TC.saveAllData();
+}
+
 TC.isPassValid = function(pass) {
     if (TC.database.people.length == 0) {
         return false;
@@ -262,6 +279,14 @@ TC.checkDateForHoliday = function(timestamp) {
     return holiday;
 }
 
+TC.formatDate = function(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+    let dateStr = day + "/" + month + "/" + year;
+    return dateStr;
+}
+
 TC.enterCode = function(code, forced) {
     let data = TC.getUserData(code);
     let index = TC.getUserIndex(code);
@@ -271,10 +296,7 @@ TC.enterCode = function(code, forced) {
             timeSpan.setTime(data.activeTimeSpan);
 
             let now = new Date();
-            let year = new Date().getFullYear();
-            let month = new Date().getMonth();
-            let day = new Date().getDate();
-            let dateStr = day + "/" + month + "/" + year;
+            let dateStr = TC.formatDate(now);
             let calendarStr = TC.getCalendarFormatDate(now);
             let mult = 1.0;
             let holiday = TC.checkDateForHoliday(data.activeTimeSpan);
