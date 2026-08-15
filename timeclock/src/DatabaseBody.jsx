@@ -40,12 +40,13 @@ class DatabaseBody extends React.Component {
 
     _onClickNewUser() {
         if (this.state.name == "" || this.state.code.length != 3) {
+            alert("Invalid name or code was input! Cannot create new user!");
             return;
         }
 
-        TC.addNewUser(this.state.code, this.state.name, "");
+        TC.addNewUser(this.state.code, this.state.name, this.state.lastName, this.state.rate, "");
 
-        this.setState({key: TC.guid(), name: "", code: ""});
+        this.setState({key: TC.guid(), name: "", lastName: "", rate: 0.0, code: ""});
     }
 
     _onClickUser(user) {
