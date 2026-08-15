@@ -84,6 +84,15 @@ class ClockBody extends React.Component {
         this.setState({code: ev.currentTarget.value, greet: Math.round(Math.random() * 6)});
     }
 
+    _onKey(ev) {
+        let key = ev.currentTarget.value;
+        if (key == "Enter") {
+            if (TC.isCodeLength3(this.state.code)) {
+                this._onClickEnter();
+            }
+        }
+    }
+
     _onPassChanged(ev) {
         this.setState({pass: ev.currentTarget.value});
     }
@@ -190,6 +199,7 @@ class ClockBody extends React.Component {
                             required
                             defaultValue="" 
                             placeholder="Enter 3-digit code"
+                            onKeyUp={(value) => this._onKey(value)}
                             onInput={(value) => this._onCodeChanged(value)}/>
                     </div>
                     {this._renderEnterButton()}
