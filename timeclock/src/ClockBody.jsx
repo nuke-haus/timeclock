@@ -85,8 +85,7 @@ class ClockBody extends React.Component {
     }
 
     _onKey(ev) {
-        let key = ev.key;
-        if (key == "Enter") {
+        if (ev.key == "Enter") {
             if (TC.isCodeLength3(this.state.code)) {
                 this._onClickEnter();
             }
