@@ -369,7 +369,7 @@ TC.addEffects = function() {
         doRand = false;
     }
 
-    let margin = viewportWidth * 0.2;
+    let margin = viewportWidth * 0.1;
 
     for (let i = 0; i < 20; i++) {
         TC.effects.push({
@@ -381,7 +381,7 @@ TC.addEffects = function() {
             rotate: (Math.random() * -6) + 3,
             size: (Math.random() * 3.5) + 1.2,
             speed: (Math.random() * 4) + 0.5,
-            wobble: (Math.random() * 200),
+            wobble: (Math.random() * 100),
             wobbleSpd: Math.random() * 0.01,
             wobbleOff: Math.random() * 5000,
             name: new Date().getMilliseconds() + "emoji" + i
