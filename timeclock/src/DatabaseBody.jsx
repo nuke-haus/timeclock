@@ -172,6 +172,30 @@ class DatabaseBody extends React.Component {
         this.setState({user: TC.database.people[idx], key: TC.guid()});
     }
 
+    _onClickExport() {
+        let content = TC.getDataForBackup();
+        let file = new Blob([content], { type: 'text/plain' });
+        let link = document.createElement("a");
+        link.href = URL.createObjectURL(file);
+        link.download = TC.formatDate(new Date()) + "_export.txt";
+        document.body.appendChild(link); 
+        
+        link.click(); 
+        URL.revokeObjectURL(link.href);
+    }
+
+    _onImportSuccess(data) {
+        console.log(data);
+        TC.database = data;
+        TC.saveAllData();
+    }
+
+    _onImportFile(file) {
+        const fileReader = new FileReader();
+        fileReader.onload = (event) => this._onImportSuccess(atob(event.target.result));
+        fileReader.readAsText(file);
+    }
+
     _renderSingleUser() {
         if (this.state.user == null) {
             return null;
@@ -181,9 +205,6 @@ class DatabaseBody extends React.Component {
         let modStr = `Modify data for ${this.state.user.name}`;
         return (
             <div key={this.state.key}>
-                <div className="tabletext">
-                    {""}
-                </div>
                 <table className="formulatablesmall">
                     <thead>
                         <tr>
@@ -344,8 +365,19 @@ class DatabaseBody extends React.Component {
         }
         return (
             <div>
-                <div className="tabletext">
-                </div>
+                <table className="formulatablesmall">
+                    <tbody>
+                        <td>
+                            <button onClick={() => this._onClickExport()} className="databaseButton">📤 Export Data</button>
+                        </td>
+                         <td>
+                            IMPORT DATA
+                            <input type="file"
+                                    accept=".txt"
+                                    onChange={(event) => this._onImportFile(event.target.files[0])}/>
+                        </td>
+                    </tbody>
+                </table>
                 <table className="formulatablesmall">
                     <tbody>
                         <tr key='useradd'>
