@@ -12,9 +12,11 @@ class Page extends React.Component {
     NAV_DATABASE = "📇";
     NAV_CALENDAR = "🗓️";
     NAV_REPORTS = "📃";
+    NAV_LOCK = "🔒";
 
     state = {
-        currentNav: "⏱️"
+        currentNav: "⏱️",
+        locked: false
     };
 
     componentDidMount() {
@@ -53,9 +55,13 @@ class Page extends React.Component {
         this.setState({currentNav: id});
     }
 
+    _onNavLock() {
+        this.setState({locked: !this.state.locked, currentNav: this.NAV_CLOCK});
+    }
+
     render() {
 
-        const header = (
+        let header = (
             <div>
                 <div className="navbar">
                     <div className="topbutton" onClick={() => this._onNavClick(this.NAV_CLOCK)}>
@@ -70,9 +76,16 @@ class Page extends React.Component {
                     <div className="topbutton" onClick={() => this._onNavClick(this.NAV_REPORTS)}>
                         <span className={this._getClassName(this.NAV_REPORTS)}>{this.NAV_REPORTS}</span>
                     </div>
+                    <div className="topbutton" onClick={() => this._onNavLock(this.NAV_LOCK)}>
+                        <span className={this._getClassName(this.NAV_LOCK)}>{this.NAV_LOCK}</span>
+                    </div>
                 </div>
             </div>
         );
+
+        if (this.state.locked) {
+            header = undefined;
+        }
 
         if (this.state.currentNav == this.NAV_CLOCK) { 
             return (

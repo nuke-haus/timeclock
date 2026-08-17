@@ -2,8 +2,8 @@ const TC = {};
 TC.database = {};
 TC.database.people = [];
 TC.database.holidays = [];
+TC.database.lastSaveTime = "";
 TC.effects = [];
-TC.lastSaveTime = "";
 
 TC._jsonOutputLogic = function(key, value) {
     return (value == null || value === "" || value === NaN)
@@ -17,7 +17,7 @@ TC.getDataForBackup = function() {
 }
 
 TC.getAllDataForExport = function() {
-    const exportData = {people: [], holidays: [], lastSaveTime: TC.lastSaveTime};
+    const exportData = {people: [], holidays: [], lastSaveTime: TC.database.lastSaveTime};
     for (let id in TC.database.people) {
         const clone = TC.deepCopy(TC.database.people[id]);
         exportData.people.push(clone);
@@ -38,7 +38,7 @@ TC.saveAllData = function() {
 }
 
 TC.loadData = function(data) {
-    TC.lastSaveTime = data.lastSaveTime;
+    TC.database.lastSaveTime = data.lastSaveTime;
     TC.database.people = data.people;
     TC.database.holidays = data.holidays;
 }
@@ -395,8 +395,8 @@ TC.rand = function(items) {
 
 TC.backupData = function() {
     let newDate = TC.formatDate(new Date());
-    if (TC.lastSaveTime != newDate) {
-        TC.lastSaveTime = newDate;
+    if (TC.database.lastSaveTime != newDate) {
+        TC.database.lastSaveTime = newDate;
         let content = TC.getDataForBackup();
         let file = new Blob([content], { type: 'text/plain' });
         let link = document.createElement("a");
