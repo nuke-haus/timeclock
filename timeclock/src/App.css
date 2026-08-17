@@ -50,7 +50,7 @@
 }
 
 .clockdiv {
-    font-size: 64px;
+    font-size: 60px;
     width: 100%;
     height: 100px;
     text-align: center;
@@ -59,7 +59,7 @@
 .code {
     color: #AA2222;
     font-weight: bold;
-    font-size: 64px;
+    font-size: 60px;
     text-align: center;
 }
 
@@ -92,13 +92,13 @@
 
 .databaseButton {
     text-align: center;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .infoText {
     justify-content: center;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .centerContent {

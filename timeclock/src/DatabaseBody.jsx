@@ -185,8 +185,10 @@ class DatabaseBody extends React.Component {
     }
 
     _onImportSuccess(data) {
-        console.log(data);
-        TC.database = data;
+        let json = JSON.parse(data);
+        console.log("Import complete");
+        console.log(json.people)
+        TC.database = json;
         TC.saveAllData();
     }
 
