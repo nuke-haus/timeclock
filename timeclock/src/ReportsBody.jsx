@@ -61,6 +61,53 @@ class ReportsBody extends React.Component {
         this.setState({key: TC.guid(), endDate: date});
     }
 
+    _renderTimeEntries() {
+        let rows = [];
+        let entries = TC.getTimeEntries(this.state.startDate, this.state.endDate);
+
+        for (let [i, value] of entries.entries()) {
+            let startDate = new Date();
+            startDate.setTime(value.start);
+            let endDate = new Date();
+            endDate.setTime(value.end);
+            let warn = value.forced ? "⚠️" : "🆗";
+
+            rows.push(
+                <tr>
+                    <td>
+                        {value.person.name}
+                    </td>
+                    <td>
+                        {value.mult}
+                    </td>
+                    <td>
+                        warn
+                    </td>
+                    <td>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(date) => this._setStartTime(value.person, value.start, date)}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={10}
+                            timeCaption="time"
+                            dateFormat="MMMM d, yyyy h:mm aa"/>
+                    </td>
+                    <td>
+                        <DatePicker
+                            selected={endDate}
+                            onChange={(date) => this._setEndTime(value.person, value.start, date)}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={10}
+                            timeCaption="time"
+                            dateFormat="MMMM d, yyyy h:mm aa"/>
+                    </td>
+                </tr>
+            );
+        }
+    }
+
     _renderReportBody() {
         return (
             <div key={this.state.key}>
@@ -92,11 +139,25 @@ class ReportsBody extends React.Component {
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <button onClick={() => this._onGenerate()} className="databaseButton">📄 Generate Report</button>
+                                <button onClick={() => this._onGenerate()} className="databaseButton">📄 Generate CSV File</button>
                             </td>
                         </tr>
                     </thead>
                     <tbody>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <thead>
+                            <tr>
+                                <th>NAME</th>
+                                <th>MULTIPLIER</th>
+                                <th>STATUS</th>
+                                <th>START TIME</th>
+                                <th>END TIME</th>
+                            </tr>
+                        </thead>
+                        {this._renderTimeEntries()}
                     </tbody>
                 </table>
             </div>

@@ -43,6 +43,28 @@ TC.loadData = function(data) {
     TC.database.holidays = data.holidays;
 }
 
+TC.getTimeEntries = function(d1, d2) {
+    let result = [];
+
+    for (let [i, value] of TC.database.people.entries()) {
+        let validSpans = value.timeSpans.filter((x) => TC.isDateInRange(x.start, d1, d2));
+        for (let [j, value2] of validSpans.entries()) {
+
+            result.push(
+                {
+                    person: value,
+                    start: value2.start,
+                    end: value2.end,
+                    mult: value2.multiplier,
+                    forced: value2.forced
+                }
+            );
+        }
+    }
+
+    return result;
+}
+
 TC.getTimeReport = function(d1, d2) {
     let csvContent = "data:text/csv;charset=utf-8,";
     let date = TC.formatDateStupidly(new Date());
