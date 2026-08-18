@@ -71,6 +71,7 @@ class ReportsBody extends React.Component {
         }
         if (timeIdx > -1) {
             TC.database.people[idx].timeSpans[timeIdx].start = newTime;
+            TC.database.people[idx].timeSpans[timeIdx].forced = false;
             TC.saveAllData();
             this.setState({key: TC.guid()});
         }
@@ -86,6 +87,7 @@ class ReportsBody extends React.Component {
         }
         if (timeIdx > -1) {
             TC.database.people[idx].timeSpans[timeIdx].end = newTime;
+            TC.database.people[idx].timeSpans[timeIdx].forced = false;
             TC.saveAllData();
             this.setState({key: TC.guid()});
         }
@@ -111,7 +113,7 @@ class ReportsBody extends React.Component {
             rows.push(
                 <tr key={this.state.key + "row" + i}>
                     <td>
-                        {value.person.name}
+                        {value.person.name + " " + value.person.lastName}
                     </td>
                     <td>
                         {value.mult}
