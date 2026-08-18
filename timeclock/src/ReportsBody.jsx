@@ -155,7 +155,7 @@ class ReportsBody extends React.Component {
                         <th>NAME</th>
                         <th>MULTIPLIER</th>
                         <th>STATUS</th>
-                        <th>TIME TOTAL</th>
+                        <th>HOURS</th>
                         <th>START TIME</th>
                         <th>END TIME</th>
                     </tr>
