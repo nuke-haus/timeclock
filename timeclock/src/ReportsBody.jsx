@@ -61,9 +61,21 @@ class ReportsBody extends React.Component {
         this.setState({key: TC.guid(), endDate: date});
     }
 
+    _setStartTime(person, oldTime, newTime) {
+
+    }
+
+    _setEndTime(person, oldTime, newTime) {
+
+    }
+
     _renderTimeEntries() {
         let rows = [];
         let entries = TC.getTimeEntries(this.state.startDate, this.state.endDate);
+
+        if (entries.length == 0) {
+            return null;
+        }
 
         for (let [i, value] of entries.entries()) {
             let startDate = new Date();
@@ -86,7 +98,7 @@ class ReportsBody extends React.Component {
                     <td>
                         <DatePicker
                             selected={startDate}
-                            onChange={(date) => this._setStartTime(value.person, value.start, date)}
+                            onChange={(date) => this._setStartTime(value.person, value.start, date.getTime())}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={10}
@@ -96,7 +108,7 @@ class ReportsBody extends React.Component {
                     <td>
                         <DatePicker
                             selected={endDate}
-                            onChange={(date) => this._setEndTime(value.person, value.start, date)}
+                            onChange={(date) => this._setEndTime(value.person, value.start, date.getTime())}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={10}
@@ -106,6 +118,23 @@ class ReportsBody extends React.Component {
                 </tr>
             );
         }
+
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>MULTIPLIER</th>
+                        <th>STATUS</th>
+                        <th>START TIME</th>
+                        <th>END TIME</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows}
+                </tbody>
+            </table>
+        )
     }
 
     _renderReportBody() {
@@ -146,20 +175,7 @@ class ReportsBody extends React.Component {
                     <tbody>
                     </tbody>
                 </table>
-                <table>
-                    <tbody>
-                        <thead>
-                            <tr>
-                                <th>NAME</th>
-                                <th>MULTIPLIER</th>
-                                <th>STATUS</th>
-                                <th>START TIME</th>
-                                <th>END TIME</th>
-                            </tr>
-                        </thead>
-                        {this._renderTimeEntries()}
-                    </tbody>
-                </table>
+                {this._renderTimeEntries()}
             </div>
         );
     }
@@ -170,7 +186,6 @@ class ReportsBody extends React.Component {
             <div className="centerContent">
                 {this._renderReportBody()}
                 <br/>
-            
             </div>
         );
     }
