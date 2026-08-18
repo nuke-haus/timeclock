@@ -62,11 +62,33 @@ class ReportsBody extends React.Component {
     }
 
     _setStartTime(person, oldTime, newTime) {
-
+        let idx = TC.getUserIndex(person.code);
+        let timeIdx = -1;
+        for (let [i, value] of person.timeSpans.entries()) {
+            if (value.start === oldTime) {
+                timeIdx = i;
+            }
+        }
+        if (timeIdx > -1) {
+            TC.database.people[idx].timeSpans[timeIdx].start = newTime;
+            TC.saveAllData();
+            this.setState({key: TC.guid()});
+        }
     }
 
     _setEndTime(person, oldTime, newTime) {
-
+        let idx = TC.getUserIndex(person.code);
+        let timeIdx = -1;
+        for (let [i, value] of person.timeSpans.entries()) {
+            if (value.end === oldTime) {
+                timeIdx = i;
+            }
+        }
+        if (timeIdx > -1) {
+            TC.database.people[idx].timeSpans[timeIdx].end = newTime;
+            TC.saveAllData();
+            this.setState({key: TC.guid()});
+        }
     }
 
     _renderTimeEntries() {
@@ -83,9 +105,11 @@ class ReportsBody extends React.Component {
             let endDate = new Date();
             endDate.setTime(value.end);
             let warn = value.forced ? "⚠️" : "🆗";
+            let total = TC.differenceInTime(startDate, endDate).toString();
+            let clippedTotal = total.substring(0, 5);
 
             rows.push(
-                <tr>
+                <tr key={this.state.key + "row" + i}>
                     <td>
                         {value.person.name}
                     </td>
@@ -93,7 +117,10 @@ class ReportsBody extends React.Component {
                         {value.mult}
                     </td>
                     <td>
-                        warn
+                        {warn}
+                    </td>
+                    <td>
+                        {clippedTotal}
                     </td>
                     <td>
                         <DatePicker
@@ -108,7 +135,7 @@ class ReportsBody extends React.Component {
                     <td>
                         <DatePicker
                             selected={endDate}
-                            onChange={(date) => this._setEndTime(value.person, value.start, date.getTime())}
+                            onChange={(date) => this._setEndTime(value.person, value.end, date.getTime())}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={10}
@@ -120,17 +147,18 @@ class ReportsBody extends React.Component {
         }
 
         return (
-            <table>
+            <table className="formulatablesmall">
                 <thead>
                     <tr>
                         <th>NAME</th>
                         <th>MULTIPLIER</th>
                         <th>STATUS</th>
+                        <th>TIME TOTAL</th>
                         <th>START TIME</th>
                         <th>END TIME</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody key={this.state.key + "entries"}>
                     {rows}
                 </tbody>
             </table>
